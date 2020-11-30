@@ -28,6 +28,10 @@ bash download.sh celeba
 
 We used the CelebA dataset which we got from the git
 
+## Some results
+
+
+
 ## Acknowledgements
 
 This work is just for study purpose. We were a group of three electrical engineer which are doing this just for fun
