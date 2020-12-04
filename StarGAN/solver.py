@@ -52,7 +52,7 @@ class Solver(object):
         self.use_tensorboard = config.use_tensorboard
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         if torch.cuda.is_available():
-            print("Running Job on GPU " + torch.cuda.get_device())
+            print("Running Job on GPU " + torch.cuda.get_device_name())
         else: 
             print("Running Job on CPU")
 

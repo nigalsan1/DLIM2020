@@ -1,0 +1,1047 @@
+Namespace(attr_path='data/celeba/list_attr_celeba.txt', batch_size=16, beta1=0.5, beta2=0.999, c2_dim=8, c_dim=5, celeba_crop_size=178, celeba_image_dir='data/celeba/images', d_conv_dim=64, d_lr=0.0001, d_repeat_num=6, dataset='CelebA', g_conv_dim=64, g_lr=0.0001, g_repeat_num=6, image_size=128, lambda_cls=1, lambda_gp=10, lambda_rec=10, log_dir='stargan_celeba/logs', log_step=10, lr_update_step=1000, mode='train', model_save_dir='stargan_celeba/models', model_save_step=10000, n_critic=5, num_iters=200000, num_iters_decay=100000, num_workers=1, rafd_crop_size=256, rafd_image_dir='data/RaFD/train', result_dir='stargan_celeba/results', resume_iters=None, sample_dir='stargan_celeba/samples', sample_step=1000, selected_attrs=['Black_Hair', 'Blond_Hair', 'Brown_Hair', 'Male', 'Young'], test_iters=200000, use_tensorboard=True)
+Finished preprocessing the CelebA dataset...
+Running Job on GPU TITAN X (Pascal)
+Generator(
+  (main): Sequential(
+    (0): Conv2d(8, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+    (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+    (3): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (4): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU(inplace=True)
+    (6): Conv2d(128, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (7): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU(inplace=True)
+    (9): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (10): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (11): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (12): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (13): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (14): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (15): ConvTranspose2d(256, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (16): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (17): ReLU(inplace=True)
+    (18): ConvTranspose2d(128, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (19): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): ReLU(inplace=True)
+    (21): Conv2d(64, 3, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+    (22): Tanh()
+  )
+)
+G
+The number of parameters: 8430528
+Discriminator(
+  (main): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (1): LeakyReLU(negative_slope=0.01)
+    (2): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (3): LeakyReLU(negative_slope=0.01)
+    (4): Conv2d(128, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): LeakyReLU(negative_slope=0.01)
+    (6): Conv2d(256, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (7): LeakyReLU(negative_slope=0.01)
+    (8): Conv2d(512, 1024, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (9): LeakyReLU(negative_slope=0.01)
+    (10): Conv2d(1024, 2048, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (11): LeakyReLU(negative_slope=0.01)
+  )
+  (conv1): Conv2d(2048, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (conv2): Conv2d(2048, 5, kernel_size=(2, 2), stride=(1, 1), bias=False)
+)
+D
+The number of parameters: 44762048
+2020-11-20 16:18:08.048163: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2020-11-20 16:18:08.055664: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 2500030000 Hz
+2020-11-20 16:18:08.055892: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55b6b1b07860 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-11-20 16:18:08.055914: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-11-20 16:18:08.056018: I tensorflow/core/common_runtime/process_util.cc:147] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+Start training...
+/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Elapsed [0:00:04], Iteration [10/200000], D/loss_real: -19.1575, D/loss_fake: 7.9780, D/loss_cls: 4.6654, D/loss_gp: 0.0591, G/loss_fake: -4.6906, G/loss_rec: 0.5211, G/loss_cls: 3.0296
+Elapsed [0:00:06], Iteration [20/200000], D/loss_real: -12.2095, D/loss_fake: -10.5330, D/loss_cls: 8.1854, D/loss_gp: 0.4453, G/loss_fake: 1.3043, G/loss_rec: 0.4453, G/loss_cls: 3.2056
+Elapsed [0:00:08], Iteration [30/200000], D/loss_real: -19.8628, D/loss_fake: 4.4141, D/loss_cls: 3.7414, D/loss_gp: 0.0872, G/loss_fake: -6.3789, G/loss_rec: 0.3798, G/loss_cls: 2.6018
+Elapsed [0:00:11], Iteration [40/200000], D/loss_real: -13.1622, D/loss_fake: 8.0791, D/loss_cls: 3.7878, D/loss_gp: 0.0749, G/loss_fake: -5.7301, G/loss_rec: 0.3440, G/loss_cls: 3.1234
+Elapsed [0:00:14], Iteration [50/200000], D/loss_real: -5.1629, D/loss_fake: 1.4401, D/loss_cls: 2.2144, D/loss_gp: 0.0104, G/loss_fake: 5.8316, G/loss_rec: 0.3973, G/loss_cls: 2.6644
+Elapsed [0:00:17], Iteration [60/200000], D/loss_real: -16.3824, D/loss_fake: 13.9636, D/loss_cls: 3.1799, D/loss_gp: 0.0234, G/loss_fake: -8.4196, G/loss_rec: 0.3985, G/loss_cls: 3.1531
+Elapsed [0:00:19], Iteration [70/200000], D/loss_real: -0.8846, D/loss_fake: -1.3636, D/loss_cls: 2.3717, D/loss_gp: 0.0049, G/loss_fake: 0.8351, G/loss_rec: 0.3706, G/loss_cls: 2.4976
+Elapsed [0:00:21], Iteration [80/200000], D/loss_real: 0.1549, D/loss_fake: -2.8578, D/loss_cls: 2.5601, D/loss_gp: 0.0275, G/loss_fake: -0.8625, G/loss_rec: 0.3778, G/loss_cls: 2.5151
+Elapsed [0:00:24], Iteration [90/200000], D/loss_real: 0.8006, D/loss_fake: -3.2394, D/loss_cls: 2.2407, D/loss_gp: 0.0202, G/loss_fake: 1.4344, G/loss_rec: 0.3834, G/loss_cls: 2.2712
+Elapsed [0:00:26], Iteration [100/200000], D/loss_real: -4.5325, D/loss_fake: -4.3976, D/loss_cls: 3.5960, D/loss_gp: 0.1696, G/loss_fake: 3.4257, G/loss_rec: 0.4423, G/loss_cls: 3.7398
+Elapsed [0:00:28], Iteration [110/200000], D/loss_real: -7.5025, D/loss_fake: 3.4408, D/loss_cls: 2.6118, D/loss_gp: 0.0868, G/loss_fake: -2.1194, G/loss_rec: 0.3481, G/loss_cls: 2.6520
+Elapsed [0:00:31], Iteration [120/200000], D/loss_real: -6.4202, D/loss_fake: 2.8582, D/loss_cls: 2.6841, D/loss_gp: 0.0189, G/loss_fake: -2.3784, G/loss_rec: 0.3600, G/loss_cls: 2.7185
+Elapsed [0:00:33], Iteration [130/200000], D/loss_real: -2.4977, D/loss_fake: -1.3075, D/loss_cls: 2.5601, D/loss_gp: 0.0111, G/loss_fake: 1.3805, G/loss_rec: 0.3791, G/loss_cls: 2.8772
+Elapsed [0:00:35], Iteration [140/200000], D/loss_real: 0.3608, D/loss_fake: -4.5141, D/loss_cls: 2.9562, D/loss_gp: 0.0800, G/loss_fake: -1.9381, G/loss_rec: 0.3421, G/loss_cls: 3.3724
+Elapsed [0:00:37], Iteration [150/200000], D/loss_real: -1.6459, D/loss_fake: -2.0441, D/loss_cls: 2.5579, D/loss_gp: 0.0510, G/loss_fake: 3.6221, G/loss_rec: 0.3600, G/loss_cls: 2.5176
+Elapsed [0:00:40], Iteration [160/200000], D/loss_real: -3.4747, D/loss_fake: -0.6167, D/loss_cls: 2.7555, D/loss_gp: 0.0102, G/loss_fake: 1.8161, G/loss_rec: 0.3483, G/loss_cls: 2.5411
+Elapsed [0:00:42], Iteration [170/200000], D/loss_real: 0.5405, D/loss_fake: -3.8578, D/loss_cls: 2.8685, D/loss_gp: 0.0326, G/loss_fake: 7.8949, G/loss_rec: 0.3450, G/loss_cls: 2.9619
+Elapsed [0:00:46], Iteration [180/200000], D/loss_real: -2.8551, D/loss_fake: -1.3023, D/loss_cls: 3.2709, D/loss_gp: 0.0428, G/loss_fake: 1.1294, G/loss_rec: 0.3369, G/loss_cls: 3.1948
+Elapsed [0:00:48], Iteration [190/200000], D/loss_real: 2.0571, D/loss_fake: -4.9960, D/loss_cls: 2.1868, D/loss_gp: 0.0135, G/loss_fake: 5.5116, G/loss_rec: 0.3183, G/loss_cls: 2.6755
+Elapsed [0:00:50], Iteration [200/200000], D/loss_real: -10.9107, D/loss_fake: 7.0563, D/loss_cls: 2.8016, D/loss_gp: 0.0293, G/loss_fake: -6.7988, G/loss_rec: 0.3658, G/loss_cls: 2.7280
+Elapsed [0:00:52], Iteration [210/200000], D/loss_real: 8.3011, D/loss_fake: -12.8884, D/loss_cls: 3.8050, D/loss_gp: 0.0675, G/loss_fake: 7.9677, G/loss_rec: 0.3740, G/loss_cls: 3.9593
+Elapsed [0:00:55], Iteration [220/200000], D/loss_real: -9.0764, D/loss_fake: 3.1738, D/loss_cls: 2.3801, D/loss_gp: 0.1299, G/loss_fake: 3.7710, G/loss_rec: 0.3594, G/loss_cls: 3.1889
+Elapsed [0:00:57], Iteration [230/200000], D/loss_real: -4.3302, D/loss_fake: -0.8035, D/loss_cls: 2.5548, D/loss_gp: 0.0247, G/loss_fake: -1.6136, G/loss_rec: 0.3154, G/loss_cls: 3.3212
+Elapsed [0:01:00], Iteration [240/200000], D/loss_real: -0.2554, D/loss_fake: -8.3913, D/loss_cls: 2.7491, D/loss_gp: 0.0990, G/loss_fake: 22.0394, G/loss_rec: 0.3661, G/loss_cls: 3.5907
+Elapsed [0:01:03], Iteration [250/200000], D/loss_real: -20.6658, D/loss_fake: 13.8166, D/loss_cls: 2.8477, D/loss_gp: 0.0044, G/loss_fake: -15.9228, G/loss_rec: 0.3444, G/loss_cls: 2.8073
+Elapsed [0:01:05], Iteration [260/200000], D/loss_real: 14.1295, D/loss_fake: -17.7865, D/loss_cls: 3.3316, D/loss_gp: 0.0056, G/loss_fake: 17.5490, G/loss_rec: 0.3477, G/loss_cls: 4.2123
+Elapsed [0:01:08], Iteration [270/200000], D/loss_real: -5.6968, D/loss_fake: -0.4167, D/loss_cls: 2.6625, D/loss_gp: 0.0275, G/loss_fake: 2.4890, G/loss_rec: 0.3521, G/loss_cls: 3.0925
+Elapsed [0:01:11], Iteration [280/200000], D/loss_real: -15.1990, D/loss_fake: 8.2118, D/loss_cls: 2.6240, D/loss_gp: 0.0543, G/loss_fake: -2.6961, G/loss_rec: 0.3335, G/loss_cls: 2.8250
+Elapsed [0:01:13], Iteration [290/200000], D/loss_real: 5.3824, D/loss_fake: -12.4270, D/loss_cls: 2.3479, D/loss_gp: 0.1368, G/loss_fake: 11.1411, G/loss_rec: 0.3398, G/loss_cls: 3.0201
+Elapsed [0:01:16], Iteration [300/200000], D/loss_real: -11.4620, D/loss_fake: 0.6448, D/loss_cls: 2.9565, D/loss_gp: 0.0942, G/loss_fake: -3.6148, G/loss_rec: 0.3820, G/loss_cls: 3.4613
+Elapsed [0:01:19], Iteration [310/200000], D/loss_real: -10.0440, D/loss_fake: 0.8372, D/loss_cls: 2.5923, D/loss_gp: 0.1807, G/loss_fake: -0.7660, G/loss_rec: 0.3456, G/loss_cls: 3.2587
+Elapsed [0:01:21], Iteration [320/200000], D/loss_real: -13.5052, D/loss_fake: 7.3589, D/loss_cls: 3.2066, D/loss_gp: 0.2712, G/loss_fake: 5.6860, G/loss_rec: 0.3399, G/loss_cls: 3.7538
+Elapsed [0:01:23], Iteration [330/200000], D/loss_real: -12.4714, D/loss_fake: -0.4023, D/loss_cls: 2.5539, D/loss_gp: 0.2050, G/loss_fake: -1.9040, G/loss_rec: 0.3471, G/loss_cls: 2.5671
+Elapsed [0:01:25], Iteration [340/200000], D/loss_real: -4.2595, D/loss_fake: -7.3975, D/loss_cls: 2.5428, D/loss_gp: 0.1403, G/loss_fake: 5.9951, G/loss_rec: 0.3423, G/loss_cls: 2.9236
+Elapsed [0:01:28], Iteration [350/200000], D/loss_real: 2.6392, D/loss_fake: -12.9109, D/loss_cls: 2.8141, D/loss_gp: 0.0765, G/loss_fake: 10.8492, G/loss_rec: 0.3698, G/loss_cls: 3.8648
+Elapsed [0:01:30], Iteration [360/200000], D/loss_real: 3.3148, D/loss_fake: -9.5139, D/loss_cls: 2.7585, D/loss_gp: 0.0352, G/loss_fake: 5.0969, G/loss_rec: 0.3325, G/loss_cls: 3.1673
+Elapsed [0:01:33], Iteration [370/200000], D/loss_real: -14.5000, D/loss_fake: -0.1212, D/loss_cls: 3.1048, D/loss_gp: 0.8706, G/loss_fake: 8.8398, G/loss_rec: 0.3159, G/loss_cls: 3.3066
+Elapsed [0:01:35], Iteration [380/200000], D/loss_real: -11.3249, D/loss_fake: 3.0044, D/loss_cls: 3.1053, D/loss_gp: 0.1351, G/loss_fake: -2.5132, G/loss_rec: 0.3132, G/loss_cls: 2.7139
+Elapsed [0:01:37], Iteration [390/200000], D/loss_real: -7.2637, D/loss_fake: -3.7216, D/loss_cls: 3.1408, D/loss_gp: 0.0741, G/loss_fake: 3.8858, G/loss_rec: 0.3658, G/loss_cls: 2.9098
+Elapsed [0:01:40], Iteration [400/200000], D/loss_real: -0.2509, D/loss_fake: -9.5758, D/loss_cls: 2.8356, D/loss_gp: 0.0812, G/loss_fake: 16.9708, G/loss_rec: 0.3347, G/loss_cls: 3.5026
+Elapsed [0:01:42], Iteration [410/200000], D/loss_real: 6.6548, D/loss_fake: -14.8412, D/loss_cls: 2.6764, D/loss_gp: 0.1995, G/loss_fake: 8.7133, G/loss_rec: 0.3367, G/loss_cls: 2.8163
+Elapsed [0:01:44], Iteration [420/200000], D/loss_real: -17.3492, D/loss_fake: 4.7878, D/loss_cls: 2.6113, D/loss_gp: 0.2070, G/loss_fake: -6.1761, G/loss_rec: 0.3291, G/loss_cls: 2.7363
+Elapsed [0:01:47], Iteration [430/200000], D/loss_real: -5.8254, D/loss_fake: -3.4204, D/loss_cls: 2.5852, D/loss_gp: 0.1037, G/loss_fake: 4.5184, G/loss_rec: 0.2933, G/loss_cls: 3.0521
+Elapsed [0:01:49], Iteration [440/200000], D/loss_real: 1.6941, D/loss_fake: -11.8788, D/loss_cls: 2.9544, D/loss_gp: 0.1916, G/loss_fake: 3.9792, G/loss_rec: 0.3014, G/loss_cls: 3.3182
+Elapsed [0:01:51], Iteration [450/200000], D/loss_real: 1.8728, D/loss_fake: -13.3008, D/loss_cls: 3.5042, D/loss_gp: 0.1247, G/loss_fake: 16.4671, G/loss_rec: 0.3508, G/loss_cls: 5.6723
+Elapsed [0:01:54], Iteration [460/200000], D/loss_real: -29.4637, D/loss_fake: 15.5027, D/loss_cls: 2.5316, D/loss_gp: 0.3183, G/loss_fake: -11.4051, G/loss_rec: 0.3624, G/loss_cls: 2.5215
+Elapsed [0:01:56], Iteration [470/200000], D/loss_real: -13.3315, D/loss_fake: -0.8805, D/loss_cls: 3.2800, D/loss_gp: 0.2500, G/loss_fake: 10.0133, G/loss_rec: 0.3664, G/loss_cls: 1.9886
+Elapsed [0:01:58], Iteration [480/200000], D/loss_real: -7.8752, D/loss_fake: -4.5695, D/loss_cls: 2.5267, D/loss_gp: 0.3000, G/loss_fake: 4.6402, G/loss_rec: 0.3395, G/loss_cls: 3.5153
+Elapsed [0:02:01], Iteration [490/200000], D/loss_real: -13.2044, D/loss_fake: 2.9648, D/loss_cls: 2.7203, D/loss_gp: 0.0905, G/loss_fake: -3.0640, G/loss_rec: 0.2868, G/loss_cls: 3.4335
+Elapsed [0:02:03], Iteration [500/200000], D/loss_real: -16.1621, D/loss_fake: 11.7811, D/loss_cls: 3.0733, D/loss_gp: 0.0397, G/loss_fake: -3.9919, G/loss_rec: 0.3048, G/loss_cls: 3.5074
+Elapsed [0:02:05], Iteration [510/200000], D/loss_real: 20.1912, D/loss_fake: -30.7560, D/loss_cls: 2.7430, D/loss_gp: 0.3216, G/loss_fake: 11.0055, G/loss_rec: 0.3225, G/loss_cls: 3.1165
+Elapsed [0:02:07], Iteration [520/200000], D/loss_real: -11.6003, D/loss_fake: 6.7106, D/loss_cls: 2.7887, D/loss_gp: 0.1048, G/loss_fake: -2.2566, G/loss_rec: 0.2690, G/loss_cls: 4.1261
+Elapsed [0:02:10], Iteration [530/200000], D/loss_real: -14.4722, D/loss_fake: 7.7529, D/loss_cls: 2.9430, D/loss_gp: 0.0422, G/loss_fake: -4.2577, G/loss_rec: 0.2791, G/loss_cls: 4.4199
+Elapsed [0:02:12], Iteration [540/200000], D/loss_real: -2.2971, D/loss_fake: -4.3831, D/loss_cls: 1.9932, D/loss_gp: 0.0587, G/loss_fake: 5.3031, G/loss_rec: 0.2753, G/loss_cls: 2.6285
+Elapsed [0:02:14], Iteration [550/200000], D/loss_real: -13.9188, D/loss_fake: 10.1160, D/loss_cls: 3.1608, D/loss_gp: 0.0768, G/loss_fake: -10.8528, G/loss_rec: 0.2849, G/loss_cls: 3.2878
+Elapsed [0:02:17], Iteration [560/200000], D/loss_real: -7.0235, D/loss_fake: -3.8705, D/loss_cls: 2.9521, D/loss_gp: 0.1233, G/loss_fake: 0.5309, G/loss_rec: 0.3417, G/loss_cls: 3.1642
+Elapsed [0:02:20], Iteration [570/200000], D/loss_real: 4.4386, D/loss_fake: -11.8661, D/loss_cls: 2.4573, D/loss_gp: 0.1221, G/loss_fake: 10.7696, G/loss_rec: 0.3011, G/loss_cls: 3.3374
+Elapsed [0:02:22], Iteration [580/200000], D/loss_real: -11.1790, D/loss_fake: 7.7045, D/loss_cls: 2.0269, D/loss_gp: 0.0455, G/loss_fake: -7.5353, G/loss_rec: 0.2679, G/loss_cls: 3.7924
+Elapsed [0:02:24], Iteration [590/200000], D/loss_real: -14.3202, D/loss_fake: 9.1221, D/loss_cls: 2.7503, D/loss_gp: 0.0577, G/loss_fake: -10.0388, G/loss_rec: 0.2972, G/loss_cls: 3.5785
+Elapsed [0:02:27], Iteration [600/200000], D/loss_real: -17.2787, D/loss_fake: 12.2634, D/loss_cls: 3.0818, D/loss_gp: 0.0238, G/loss_fake: -12.9411, G/loss_rec: 0.3472, G/loss_cls: 2.5819
+Elapsed [0:02:29], Iteration [610/200000], D/loss_real: -6.0770, D/loss_fake: 0.2079, D/loss_cls: 2.8925, D/loss_gp: 0.0977, G/loss_fake: 1.9772, G/loss_rec: 0.2782, G/loss_cls: 3.2550
+Elapsed [0:02:31], Iteration [620/200000], D/loss_real: -0.1867, D/loss_fake: -4.0215, D/loss_cls: 1.7282, D/loss_gp: 0.0555, G/loss_fake: 6.4735, G/loss_rec: 0.2713, G/loss_cls: 3.9463
+Elapsed [0:02:34], Iteration [630/200000], D/loss_real: -10.0382, D/loss_fake: -5.6176, D/loss_cls: 2.2054, D/loss_gp: 0.2844, G/loss_fake: 7.2608, G/loss_rec: 0.3977, G/loss_cls: 3.1625
+Elapsed [0:02:36], Iteration [640/200000], D/loss_real: 1.8669, D/loss_fake: -7.5281, D/loss_cls: 2.4020, D/loss_gp: 0.0397, G/loss_fake: 8.2894, G/loss_rec: 0.3017, G/loss_cls: 3.5261
+Elapsed [0:02:38], Iteration [650/200000], D/loss_real: -31.4224, D/loss_fake: 24.6628, D/loss_cls: 2.6635, D/loss_gp: 0.1211, G/loss_fake: -22.6849, G/loss_rec: 0.2879, G/loss_cls: 3.2697
+Elapsed [0:02:40], Iteration [660/200000], D/loss_real: 7.5413, D/loss_fake: -16.8142, D/loss_cls: 2.8025, D/loss_gp: 0.1475, G/loss_fake: 16.8343, G/loss_rec: 0.3172, G/loss_cls: 3.0531
+Elapsed [0:02:42], Iteration [670/200000], D/loss_real: 1.5683, D/loss_fake: -10.1981, D/loss_cls: 3.4266, D/loss_gp: 0.1304, G/loss_fake: 10.7373, G/loss_rec: 0.3557, G/loss_cls: 3.5333
+Elapsed [0:02:44], Iteration [680/200000], D/loss_real: -2.5328, D/loss_fake: -3.0990, D/loss_cls: 2.5075, D/loss_gp: 0.0082, G/loss_fake: 1.2535, G/loss_rec: 0.2891, G/loss_cls: 2.8422
+Elapsed [0:02:47], Iteration [690/200000], D/loss_real: -7.5608, D/loss_fake: 3.7733, D/loss_cls: 2.0864, D/loss_gp: 0.0560, G/loss_fake: -1.9047, G/loss_rec: 0.2612, G/loss_cls: 3.3512
+Elapsed [0:02:50], Iteration [700/200000], D/loss_real: -9.9092, D/loss_fake: 1.5429, D/loss_cls: 1.9806, D/loss_gp: 0.1268, G/loss_fake: -4.6178, G/loss_rec: 0.2717, G/loss_cls: 3.9015
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/062667.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/128170.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/170442.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/016507.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/033189.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/062315.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/152809.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/129792.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/060044.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/038469.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/114611.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/092147.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/147180.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/036028.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/075192.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "main.py", line 110, in <module>
+    main(config)
+  File "main.py", line 44, in main
+    solver.train()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 224, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/solver.py", line 221, in train
+    x_real, label_org = next(data_iter)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 435, in __next__
+    data = self._next_data()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1085, in _next_data
+    return self._process_data(data)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 1111, in _process_data
+    data.reraise()
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/_utils.py", line 428, in reraise
+    raise self.exc_type(msg)
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/062667.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/128170.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/170442.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/016507.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/033189.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/062315.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/152809.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/129792.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/060044.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/038469.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/114611.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/092147.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/147180.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/036028.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/075192.jpg'
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/worker.py", line 198, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/DLIM2020/StarGAN/data_loader.py", line 63, in __getitem__
+    image = Image.open(os.path.join(self.image_dir, filename))
+  File "/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/pytcu10/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/images/116729.jpg'
+
