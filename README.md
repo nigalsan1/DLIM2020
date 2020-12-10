@@ -30,7 +30,7 @@ We used the CelebA dataset which we got from the git
 
 ## Some results
 
-In progress
+In progress ...
 
 ## Acknowledgements
 
