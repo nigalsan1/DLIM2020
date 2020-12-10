@@ -8,7 +8,7 @@ The work is in progress.
 
 Here you get idea of this project. You have some input image or in advance case when the network is trained you can use some noice to generate a output image with the targeted attributed. In the following datas you see some examples.
 
-... in progress
+... in progress ...
 
 ## Dependencies
 
