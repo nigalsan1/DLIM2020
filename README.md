@@ -18,7 +18,7 @@ Here you get idea of this project. You have some input image or in advance case 
 ## Source
 
 From this side you can get the source code for StarGAN. You can access it directly through the following link: https://github.com/yunjey/StarGAN.git.
-The code below shows you how you can the CelebA dataset.
+The code below shows you how you can get the CelebA dataset.
 ```
 git clone https://github.com/yunjey/StarGAN.git
 cd StarGAN/
@@ -30,7 +30,7 @@ We used the CelebA dataset which we got from the git
 
 ## Some results
 
-
+In progress
 
 ## Acknowledgements
 
