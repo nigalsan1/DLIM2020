@@ -57,7 +57,7 @@ class Generator(nn.Module):
     def __init__(self, conv_dim=64, c_dim=5, repeat_num=6):
         super(Generator, self).__init__()
 
-        self.L1 = nn.Conv2d(3+c_dim, conv_dim, kernel_size=7, stride=1, padding=3, bias=False)
+        self.L1 = nn.Conv2d(3, conv_dim, kernel_size=7, stride=1, padding=3, bias=False)
         self.L2 = ccbn(output_size = conv_dim, input_size = c_dim) #Input & Output Size?
         self.L3 = nn.ReLU(inplace=True)
 
