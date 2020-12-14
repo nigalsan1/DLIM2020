@@ -14,6 +14,11 @@ Here you get idea of this project. You have some input image or in advance case 
 
 - [Python 3.9.0](https://www.python.org/downloads/release/python-390/)
 - We suggest to use [Anaconda](https://www.anaconda.com/products/individual) for working with python.
+- Also important to have is [PyTorch](https://pytorch.org/get-started/locally/). Here is the link to get better instruction how to download PyTorch.
+- Below you find a linux instruction to install tensorflow.
+```
+pip install tensorflow -gpu
+```
 
 ## Source
 
