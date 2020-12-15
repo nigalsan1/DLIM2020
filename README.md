@@ -1,5 +1,10 @@
 # DLIM2020
 
+## Preview
+
+Here you get a little teaser what you can reproduce with this code per default settings.
+![](Results/preview_final.jpg)
+
 ## Description
 Attribute-based face manipulation
 The work is in progress.
@@ -20,18 +25,15 @@ Here you get idea of this project. You have some input image or in advance case 
 pip install tensorflow -gpu
 ```
 
-## Source
+## Source & Dataset
 
 From this side you can get the source code for StarGAN. You can access it directly through the following link: https://github.com/yunjey/StarGAN.git.
 The code below shows you how you can get the CelebA dataset.
 ```
-git clone https://github.com/yunjey/StarGAN.git
-cd StarGAN/
-bash download.sh celeba
+git clone https://github.com/nigalsan1/DLIM2020
+cd DLIM2020/StarGan/
+bash download.sh celeba #the download command for getting the dataset
 ```
-## Dataset
-
-We used the CelebA dataset which we got from the git
 
 ## Pre-trained models
 
