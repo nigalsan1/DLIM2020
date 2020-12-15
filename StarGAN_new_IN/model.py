@@ -10,7 +10,7 @@ class ResidualBlock(nn.Module):
         self.L1 = nn.Conv2d(dim_in, dim_out, kernel_size=3, stride=1, padding=1, bias=False)
         self.L2 = ccbn(input_size=c_dim,output_size=dim_out)
         self.L3 = nn.ReLU(inplace=True)
-        self.L4 = nn.Conv2d(dim_out, dim_out, kernel_size=3, stride=1, padding=1, bias=False)
+        self.L4 = nn.Conv2d(dim_in, dim_out, kernel_size=3, stride=1, padding=1, bias=False)
         self.L5 = ccbn(input_size=c_dim,output_size=dim_out)
 
     def forward(self, x, c):
@@ -44,7 +44,7 @@ class ccbn(nn.Module): #Not sure if the nn.Module is needed
         gain = (1 + self.gain(y)).view(y.size(0), -1, 1, 1)
         bias = self.bias(y).view(y.size(0), -1, 1, 1)
 
-        out = nn.instance_norm(x, self.stored_mean, self.stored_var, None, None,
+        out = F.instance_norm(x, self.stored_mean, self.stored_var, None, None,
                                 self.training, 0.1, self.eps)
 
         return out * gain + bias
@@ -57,7 +57,7 @@ class Generator(nn.Module):
     def __init__(self, conv_dim=64, c_dim=5, repeat_num=6):
         super(Generator, self).__init__()
 
-        self.L1 = nn.Conv2d(3+c_dim, conv_dim, kernel_size=7, stride=1, padding=3, bias=False)
+        self.L1 = nn.Conv2d(3, conv_dim, kernel_size=7, stride=1, padding=3, bias=False)
         self.L2 = ccbn(output_size = conv_dim, input_size = c_dim) #Input & Output Size?
         self.L3 = nn.ReLU(inplace=True)
 
@@ -73,8 +73,11 @@ class Generator(nn.Module):
         self.L8 = ccbn(output_size = curr_dim*2, input_size = c_dim)
         self.L9 = nn.ReLU(inplace=True)
 
+        curr_dim = curr_dim * 2
+
         #Bottleneck Layers
         self.L10 = ResidualBlock(dim_in=curr_dim, dim_out=curr_dim, c_dim=c_dim)
+        self.L11 = ResidualBlock(dim_in=curr_dim, dim_out=curr_dim, c_dim=c_dim)
         self.L12 = ResidualBlock(dim_in=curr_dim, dim_out=curr_dim, c_dim=c_dim)
         self.L13 = ResidualBlock(dim_in=curr_dim, dim_out=curr_dim, c_dim=c_dim)
         self.L14 = ResidualBlock(dim_in=curr_dim, dim_out=curr_dim, c_dim=c_dim)
@@ -90,11 +93,14 @@ class Generator(nn.Module):
         self.L19 = nn.ConvTranspose2d(curr_dim, curr_dim//2, kernel_size=4, stride=2, padding=1, bias=False)
         self.L20 = ccbn(output_size = curr_dim//2, input_size = c_dim) 
         self.L21 = nn.ReLU(inplace=True)
+
+        curr_dim = curr_dim // 2
         
         self.L22 = nn.Conv2d(curr_dim, 3, kernel_size=7, stride=1, padding=3, bias=False)
         self.L23 = nn.Tanh()
 
     def forward(self, x, c):
+        c = torch.argmax(c, dim=1, keepdim=False) 
         # Replicate spatially and concatenate domain information.
         # Note that this type of label conditioning does not work at all if we use reflection padding in Conv2d.
         # This is because instance normalization ignores the shifting (or bias) effect.
@@ -112,12 +118,12 @@ class Generator(nn.Module):
         x = self.L9(x)
 
         #Bottleneck Layers
-        x = self.L10(x)
-        x = self.L11(x)
-        x = self.L12(x)
-        x = self.L13(x)
-        x = self.L14(x)
-        x = self.L15(x)
+        x = self.L10(x,c)
+        x = self.L11(x,c)
+        x = self.L12(x,c)
+        x = self.L13(x,c)
+        x = self.L14(x,c)
+        x = self.L15(x,c)
 
         # Up-sampling layers.
         x = self.L16(x)
