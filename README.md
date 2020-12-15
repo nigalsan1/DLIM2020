@@ -33,6 +33,17 @@ bash download.sh celeba
 
 We used the CelebA dataset which we got from the git
 
+## Pre-trained models
+
+[Here](https://www.dropbox.com/s/fgc5wnql9o7u3sd/Models.zip?dl=0) you have some of our pretrained models. 
+You can download it locally and set it as known. You can run the evaluation script below. You have to change some attributes.
+```
+python main.py --mode test --dataset CelebA --image_size 128 --c_dim 5 \
+               --selected_attrs Black_Hair Blond_Hair Brown_Hair Male Young \
+               --model_save_dir 'LOCAL_DIR_MODEL' \
+               --result_dir 'SAVE_DIR_RESULT'
+```                
+
 ## Some results
 
 In progress ...
