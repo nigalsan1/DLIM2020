@@ -6,14 +6,7 @@ Here you get a little teaser of what you can reproduce using the default setting
 ![](Results/preview_final.jpg)
 
 ## Description
-Attribute-based face manipulation
-The work is in progress.
-
-## First impressions
-
-Here you get idea of this project. You have some input image or in advance case when the network is trained you can use some noice to generate a output image with the targeted attributed. In the following datas you see some examples.
-
-... in progress ...
+An exploration of attribute-based face manipulation, using a pre-existing network structure as shown further below. The goal is that given an input image  of a face, the network should generate an image of the same face while only changing an attribute such as hair color, gender, age, etc.
 
 ## Dependencies
 
@@ -41,7 +34,7 @@ bash download.sh celeba
 ## Setup
 After you have cloned the repository to your hard drive, you can either train a new network, or test using an existing network.
 
-### Training my own Network
+### Training your own Network
 Before training your network, make sure you have followed the instructions given in the DLIM OneDrive for setting up the cluster (i.e installing conda and setting up SLURM).
 If you want to train your own network, you will first need to download an appropriate dataset. We suggest using the CelebA dataset. 
 
@@ -72,20 +65,18 @@ Alternatively, the models are also available to download [here:](https://www.dro
 
 After you have downloaded the models, navigate into the wanted model directory and copy both .ckpt files into `[Choose StarGAN]/stargan_celeba/models`. 
 
-You also need to change the run mode from train to test. Do this by changing the argument of `--mode` from `train` to `test`
-
-
-## Pre-trained models
-
-[Here](https://www.dropbox.com/s/fgc5wnql9o7u3sd/Models.zip?dl=0) you have some of our pretrained models. 
-You can download it locally and set it as known. You can run the evaluation script below. You have to change some attributes.
+Since the network is already trained, it is not necessary to run the code on the cluster. Therefore, simply enter the command
 
 ```bash
-python main.py --mode test --dataset CelebA --image_size 128 --c_dim 5 \
-               --selected_attrs Black_Hair Blond_Hair Brown_Hair Male Young \
-               --model_save_dir 'LOCAL_DIR_MODEL' \ 
-               --result_dir 'SAVE_DIR_RESULT'
+python -u main.py "$@" --mode train --dataset CelebA --image_size 128 
+               --sample_dir stargan_celeba/samples --log_dir stargan_celeba/logs \
+               --model_save_dir stargan_celeba/models --result_dir stargan_celeba/results \
+               --celeba_image_dir ../Datasets/celeba/images \
+               --attr_path ../Datasets/celeba/list_attr_celeba.txt\
+               --selected_attrs Black_Hair Blond_Hair Brown_Hair Male Young --c_dim 5 \          
 ```
+
+Your results will be saved into `[Choose StarGAN]/stargan_celeba/result`.
 
 ## Some results
 
