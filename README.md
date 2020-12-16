@@ -86,7 +86,7 @@ Your results will be saved into `[Choose StarGAN]/stargan_celeba/result`.
 
 ## Some results
 
-In progress ...
+![In the following Gif you get a idea of how the system is evolving through these 200000 iterations. Each images is made after 1000 iterations](Results/Gif/Batchsize_8.gif)
 
 ## Acknowledgements
 
