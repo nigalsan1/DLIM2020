@@ -16,7 +16,13 @@ arr = os.listdir(path)
 arr.sort()
 
 #taking just a few of all the examples
-
+print(len(arr))
+for j in range(len(arr)):
+    for i in range(len(arr)-1):
+        if (int(arr[i][:-11])>int(arr[i+1][:-11])):
+                temp=arr[i+1]
+                arr[i+1]=arr[i]
+                arr[i]=temp
 
 #creating a list for all the images
 images = []
