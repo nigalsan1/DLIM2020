@@ -68,12 +68,18 @@ After you have downloaded the models, navigate into the wanted model directory a
 Since the network is already trained, it is not necessary to run the code on the cluster. Therefore, simply enter the command
 
 ```bash
-python -u main.py "$@" --mode train --dataset CelebA --image_size 128 
+python -u main.py "$@" --mode test --dataset CelebA --image_size 128 
                --sample_dir stargan_celeba/samples --log_dir stargan_celeba/logs \
                --model_save_dir stargan_celeba/models --result_dir stargan_celeba/results \
                --celeba_image_dir ../Datasets/celeba/images \
                --attr_path ../Datasets/celeba/list_attr_celeba.txt\
-               --selected_attrs Black_Hair Blond_Hair Brown_Hair Male Young --c_dim 5 \          
+               --selected_attrs Black_Hair Blond_Hair Brown_Hair Male Young --c_dim 5         
+```
+
+For StarGAN with different instance normalization, you need to change the attributes so that they are mutually exclusive. There are a few available combinations such as male/female, or beard/no beard. We have trained our models with hair color, so if you wish to let it run, change the last line to 
+
+```bash
+--selected_attrs Black_Hair Blond_Hair Brown_Hair Gray_Hair --c_dim 4
 ```
 
 Your results will be saved into `[Choose StarGAN]/stargan_celeba/result`.
