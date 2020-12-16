@@ -8,7 +8,6 @@ path = input("Enter the path of your file with the images for creating a GIF")
 #checking if the path is available
 if os.path.isdir(path):
     print("It was a success. The directory is existing.")
-    continue
 else:
     print("Directory not exists.")
 
