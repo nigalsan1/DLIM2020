@@ -246,7 +246,7 @@ class Solver(object):
 
             # Compute loss with real images.
             out_src, out_cls = self.D(x_real)
-            d_loss_real = - torch.mean(F.relu(1 - out_src))
+            d_loss_real = torch.mean(F.relu(1. - out_src))
             d_loss_cls = self.classification_loss(out_cls, label_org, self.dataset)
 
             # Compute loss with fake images.
@@ -256,7 +256,7 @@ class Solver(object):
 
             # Compute loss for gradient penalty.
             alpha = torch.rand(x_real.size(0), 1, 1, 1).to(self.device)
-            x_hat = (alpha * x_real.data + (1 - alpha) * x_fake.data).requires_grad_(True)
+            x_hat = (alpha * x_real.data + (1. - alpha) * x_fake.data).requires_grad_(True)
             out_src, _ = self.D(x_hat)
             d_loss_gp = self.gradient_penalty(out_src, x_hat)
 
