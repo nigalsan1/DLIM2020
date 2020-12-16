@@ -32,7 +32,7 @@ If you want to download the dataset to train your own network with, run the foll
 bash download.sh celeba
 ```
 ## Setup
-After you have cloned the repository to your hard drive, you can either train a new network, or test using an existing network.
+After you have cloned the repository to your hard drive, you can either train a new network, or test using an existing network. Either way, make sure you activate your conda environment before proceeding.
 
 ### Training your own Network
 Before training your network, make sure you have followed the instructions given in the DLIM OneDrive for setting up the cluster (i.e installing conda and setting up SLURM).
