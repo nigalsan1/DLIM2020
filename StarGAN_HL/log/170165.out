@@ -1,0 +1,119 @@
+Namespace(attr_path='data/celeba/list_attr_celeba.txt', batch_size=16, beta1=0.5, beta2=0.999, c2_dim=8, c_dim=5, celeba_crop_size=178, celeba_image_dir='data/celeba/images', d_conv_dim=64, d_lr=0.0001, d_repeat_num=6, dataset='CelebA', g_conv_dim=64, g_lr=0.0001, g_repeat_num=6, image_size=128, lambda_cls=1, lambda_gp=10, lambda_rec=10, log_dir='stargan_celeba/logs', log_step=10, lr_update_step=1000, mode='train', model_save_dir='stargan_celeba/models', model_save_step=10000, n_critic=5, num_iters=200000, num_iters_decay=100000, num_workers=1, rafd_crop_size=256, rafd_image_dir='data/RaFD/train', result_dir='stargan_celeba/results', resume_iters=None, sample_dir='stargan_celeba/samples', sample_step=1000, selected_attrs=['Black_Hair', 'Blond_Hair', 'Brown_Hair', 'Male', 'Young'], test_iters=200000, use_tensorboard=True)
+Finished preprocessing the CelebA dataset...
+Running Job on CPU
+Generator(
+  (main): Sequential(
+    (0): Conv2d(8, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+    (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+    (3): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (4): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU(inplace=True)
+    (6): Conv2d(128, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (7): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU(inplace=True)
+    (9): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (10): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (11): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (12): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (13): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (14): ResidualBlock(
+      (main): Sequential(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (4): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (15): ConvTranspose2d(256, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (16): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (17): ReLU(inplace=True)
+    (18): ConvTranspose2d(128, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (19): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): ReLU(inplace=True)
+    (21): Conv2d(64, 3, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+    (22): Tanh()
+  )
+)
+G
+The number of parameters: 8430528
+Discriminator(
+  (main): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (1): LeakyReLU(negative_slope=0.01)
+    (2): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (3): LeakyReLU(negative_slope=0.01)
+    (4): Conv2d(128, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): LeakyReLU(negative_slope=0.01)
+    (6): Conv2d(256, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (7): LeakyReLU(negative_slope=0.01)
+    (8): Conv2d(512, 1024, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (9): LeakyReLU(negative_slope=0.01)
+    (10): Conv2d(1024, 2048, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (11): LeakyReLU(negative_slope=0.01)
+  )
+  (conv1): Conv2d(2048, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (conv2): Conv2d(2048, 5, kernel_size=(2, 2), stride=(1, 1), bias=False)
+)
+D
+The number of parameters: 44762048
+2020-11-19 23:55:55.275071: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2020-11-19 23:55:55.413703: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2500030000 Hz
+2020-11-19 23:55:55.414868: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5609cfa7d2f0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-11-19 23:55:55.414916: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Start training...
+/usr/itetnas04/data-scratch-01/dlim_08hs20/data/conda_envs/dlim/lib/python3.7/site-packages/torch/nn/_reduction.py:43: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Elapsed [1:29:44], Iteration [10/200000], D/loss_real: -15.3765, D/loss_fake: 6.0954, D/loss_cls: 3.8550, D/loss_gp: 0.0322, G/loss_fake: -4.3040, G/loss_rec: 0.5285, G/loss_cls: 2.7362
+Elapsed [2:58:55], Iteration [20/200000], D/loss_real: -25.7101, D/loss_fake: 0.2616, D/loss_cls: 3.0685, D/loss_gp: 0.0568, G/loss_fake: 3.3437, G/loss_rec: 0.5067, G/loss_cls: 2.7294
+Elapsed [4:28:37], Iteration [30/200000], D/loss_real: -48.5519, D/loss_fake: 16.5866, D/loss_cls: 3.0269, D/loss_gp: 0.9764, G/loss_fake: -10.4451, G/loss_rec: 0.4112, G/loss_cls: 2.8565
+Elapsed [5:58:20], Iteration [40/200000], D/loss_real: -17.0544, D/loss_fake: 7.0477, D/loss_cls: 2.5275, D/loss_gp: 0.2120, G/loss_fake: -8.9613, G/loss_rec: 0.4986, G/loss_cls: 2.7647
+Elapsed [7:26:28], Iteration [50/200000], D/loss_real: -18.8835, D/loss_fake: 7.4291, D/loss_cls: 2.6288, D/loss_gp: 0.0951, G/loss_fake: -5.7130, G/loss_rec: 0.4002, G/loss_cls: 2.4672
+Elapsed [8:57:42], Iteration [60/200000], D/loss_real: -19.4956, D/loss_fake: 10.8249, D/loss_cls: 4.2865, D/loss_gp: 0.0828, G/loss_fake: -9.3330, G/loss_rec: 0.4146, G/loss_cls: 3.5997
+Elapsed [10:31:00], Iteration [70/200000], D/loss_real: -18.1778, D/loss_fake: 11.6811, D/loss_cls: 3.0821, D/loss_gp: 0.1037, G/loss_fake: -12.9448, G/loss_rec: 0.4245, G/loss_cls: 2.3566
+Elapsed [12:01:14], Iteration [80/200000], D/loss_real: -12.8243, D/loss_fake: 3.2912, D/loss_cls: 4.2612, D/loss_gp: 0.0531, G/loss_fake: 0.3023, G/loss_rec: 0.4776, G/loss_cls: 3.0002
+Elapsed [13:29:50], Iteration [90/200000], D/loss_real: -11.7309, D/loss_fake: 9.8975, D/loss_cls: 2.9911, D/loss_gp: 0.0161, G/loss_fake: -5.9082, G/loss_rec: 0.4727, G/loss_cls: 3.0594
+Elapsed [15:00:22], Iteration [100/200000], D/loss_real: 4.1048, D/loss_fake: -9.8210, D/loss_cls: 2.8421, D/loss_gp: 0.0159, G/loss_fake: 8.1171, G/loss_rec: 0.4220, G/loss_cls: 2.8835
+slurmstepd: error: *** JOB 170165 ON bmicgpu01 CANCELLED AT 2020-11-20T16:05:49 ***
