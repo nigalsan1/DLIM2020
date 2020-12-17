@@ -84,6 +84,9 @@ For StarGAN with different instance normalization, you need to change the attrib
 
 Your results will be saved into `[Choose StarGAN]/stargan_celeba/result`.
 
+## using a webcam as input to the neural network
+using the opencv library to recognize a face, crop it, resize and feed it to the neural network
+
 ## Some results
 
 ![](Results/Gif/Batchsize_8.gif) \
