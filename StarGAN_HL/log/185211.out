@@ -1,0 +1,13 @@
+Namespace(attr_path='data/celeba/list_attr_celeba.txt', batch_size=8, beta1=0.5, beta2=0.999, c2_dim=8, c_dim=5, celeba_crop_size=178, celeba_image_dir='data/celeba/images', d_conv_dim=64, d_lr=0.0001, d_repeat_num=6, dataset='CelebA', g_conv_dim=64, g_lr=0.0001, g_repeat_num=6, image_size=128, lambda_cls=1, lambda_gp=10, lambda_rec=10, log_dir='stargan_celeba/logs', log_step=10, lr_update_step=1000, mode='train', model_save_dir='stargan_celeba/models', model_save_step=2500, n_critic=5, num_iters=200000, num_iters_decay=100000, num_workers=1, rafd_crop_size=256, rafd_image_dir='data/RaFD/train', result_dir='stargan_celeba/results', resume_iters=None, sample_dir='stargan_celeba/samples', sample_step=1000, selected_attrs=['Black_Hair', 'Blond_Hair', 'Brown_Hair', 'Male', 'Young'], test_iters=200000, use_tensorboard=True)
+Traceback (most recent call last):
+  File "main.py", line 110, in <module>
+    main(config)
+  File "main.py", line 30, in main
+    celeba_loader = get_loader(config.celeba_image_dir, config.attr_path, config.selected_attrs,
+  File "/usr/itetnas04/data-scratch-01/dlim_07hs20/data/DLIM2020/StarGAN/data_loader.py", line 84, in get_loader
+    dataset = CelebA(image_dir, attr_path, selected_attrs, transform, mode)
+  File "/usr/itetnas04/data-scratch-01/dlim_07hs20/data/DLIM2020/StarGAN/data_loader.py", line 24, in __init__
+    self.preprocess()
+  File "/usr/itetnas04/data-scratch-01/dlim_07hs20/data/DLIM2020/StarGAN/data_loader.py", line 33, in preprocess
+    lines = [line.rstrip() for line in open(self.attr_path, 'r')]
+FileNotFoundError: [Errno 2] No such file or directory: 'data/celeba/list_attr_celeba.txt'
