@@ -84,6 +84,10 @@ For StarGAN with different instance normalization, you need to change the attrib
 
 Your results will be saved into `[Choose StarGAN]/stargan_celeba/result`.
 
+## Analysis of our training sets
+
+First lets have a look over the default trainigsets (attributes: Black Hair, Blonde Hair, Brown Hair, Male, Young)
+
 ## using a webcam as input to the neural network
 using the opencv library to recognize a face, crop it, resize and feed it to the neural network
 
