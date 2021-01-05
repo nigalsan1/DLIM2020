@@ -86,7 +86,34 @@ Your results will be saved into `[Choose StarGAN]/stargan_celeba/result`.
 
 ## Analysis of our training sets
 
-First lets have a look over the default trainigsets (attributes: Black Hair, Blonde Hair, Brown Hair, Male, Young)
+First lets have a look over the default trainigsets (attributes: Black Hair, Blonde Hair, Brown Hair, Male, Young) and default batchsize was for us 16.
+We can see that our results look very well trained for some of the input pictures. But their are some exceptions. 
+Let's have a look over the standard training attribute how we declaired whats default for us.
+
+- *Image*
+
+In this trainingset their are more women than men and therefore you see that some attributes are changing with some kind of weird behavier.
+
+<!---Explanation of Blonde Hair attribute to faces-->
+In these images you see from left to the right the attributes (Black, Blond, Brown, Gray Hair). We see that the feature with black and brown hair was pretty accurate and got some really good fake images that we almost can't tell the difference between generated and real picture. But then we got to see some new kind of behavier due to the dataset. With the blond attribute it started to lighten up the skin of the target person and made the lips redder and fuller. We suggested that it could corralate with the input images because it took randomly more female and this is like a stereotype of a blonde person.
+
+<!--- Gray Hair attribute impact on faces-->
+Additionally we also saw with the attribute gray hair that the face of the person gets older. It added some wrinkles to the face to make it more believable. Also it made the eyes smaller like a typical old people thing.
+
+<!--- Bold guy impact-->
+It's funny to see how it trys to create hair for bold people. It could handle that their exists people with no hair. Also it added some of the of the told behavier with lightening up the skin and making the eyes smaller.
+
+<!--- Hat dude aka Zack and Cody gone wild-->
+If you get some corrupted image like in the following one you see that it can't see the difference between what it should look like. It adds on the corrupeted data also the features.
+
+<!--- Hat dude aka Zack and Cody gone wild-->
+The next interesting part is with some persons who has accessoirs like a hat. It interprets that the persons haircuts is with the hat. So it changes the hat each time when some attributes are applyied.
+
+Theses all observation we did, was on one trained network at the 200000 iteration. It was very interesting to watch how different it muted in one batch.
+
+<!--- Batchsize-->
+We also ...
+
 
 ## using a webcam as input to the neural network
 using the opencv library to recognize a face, crop it, resize and feed it to the neural network
