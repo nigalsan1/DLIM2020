@@ -114,8 +114,33 @@ Theses all observation we did, was on one trained network at the 200000 iteratio
 <!--- Batchsize-->
 We also ...
 
+<!--- Discriminator learning rate -->
 
-## using a webcam as input to the neural network
+<!--- Generator learning rate -->
+
+<!--- Hingeloss -->
+
+<!--- instancenorm -->
+
+<!--- Discriminator learning rate -->
+
+
+
+## Testing with the same dataset
+
+<!--- Some comments to tests between the tests-->
+We also was able to manage to compare the different trained models on the same dataset. So we can compare different training results with each other.
+
+<!--- default for comparison between all of them -->
+
+<!--- four images next to each other for the different batchsize and a gif -->
+
+<!--- four images next to each other for the different learning rate -->
+
+<!--- four images next to each other for the different hingeloss instancenorm and default (wasserstein)-->
+
+
+## Using a webcam as input to the neural network
 using the opencv library to recognize a face, crop it, resize and feed it to the neural network
 
 ## Some results
