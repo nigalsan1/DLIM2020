@@ -112,7 +112,7 @@ The next interesting part is with some persons who has accessoirs like a hat. It
 Theses all observation we did, was on one trained network at the 200000 iteration. It was very interesting to watch how different it muted in one batch.
 
 <!--- Batchsize-->
-We also ...
+We also compared between different batchsizes. Like you see in the images (below or up) that the training effect got worser if we increased the sizes. We got the best results with size 8. It by increasing the number of samples 
 
 <!--- Discriminator learning rate -->
 
@@ -122,8 +122,6 @@ We also ...
 
 <!--- instancenorm -->
 
-<!--- Discriminator learning rate -->
-
 
 
 ## Testing with the same dataset
@@ -131,13 +129,13 @@ We also ...
 <!--- Some comments to tests between the tests-->
 We also was able to manage to compare the different trained models on the same dataset. So we can compare different training results with each other.
 
-<!--- default for comparison between all of them -->
-
-<!--- four images next to each other for the different batchsize and a gif -->
+<!--- four images next to each other for the different batchsize and a gif number 56 is good for the testing part-->
 
 <!--- four images next to each other for the different learning rate -->
 
 <!--- four images next to each other for the different hingeloss instancenorm and default (wasserstein)-->
+
+<!--- default for comparison between all of them -->
 
 
 ## Using a webcam as input to the neural network
