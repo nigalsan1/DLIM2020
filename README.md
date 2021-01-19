@@ -86,33 +86,44 @@ Your results will be saved into `[Choose StarGAN]/stargan_celeba/result`.
 
 ## Analysis of our training sets
 
-First lets have a look over the default trainigsets (attributes: Black Hair, Blonde Hair, Brown Hair, Male, Young) and default batchsize was for us 16.
-We can see that our results look very well trained for some of the input pictures. But their are some exceptions. 
-Let's have a look over the standard training attribute how we declaired whats default for us.
+In this section we will talk about some of our results and possible interpretations of the data. 
+
+To start, let's have a look at the default training configuration. We only changed the attributes that the network trained on while keeping all the parameters identical. We can see that some of our results look very well trained. There are some exceptions, however. 
 
 - *Image*
 
-In this trainingset their are more women than men and therefore you see that some attributes are changing with some kind of weird behavier.
+Since some attributes might be more prevalent on one gender than the other, in which case our model occasionally tends to also apply some other changes that are undesirable. Here are some of the observations we made:
 
-<!---Explanation of Blonde Hair attribute to faces-->
-In these images you see from left to the right the attributes (Black, Blond, Brown, Gray Hair). We see that the feature with black and brown hair was pretty accurate and got some really good fake images that we almost can't tell the difference between generated and real picture. But then we got to see some new kind of behavier due to the dataset. With the blond attribute it started to lighten up the skin of the target person and made the lips redder and fuller. We suggested that it could corralate with the input images because it took randomly more female and this is like a stereotype of a blonde person.
+#### Attributes
 
-<!--- Gray Hair attribute impact on faces-->
-Additionally we also saw with the attribute gray hair that the face of the person gets older. It added some wrinkles to the face to make it more believable. Also it made the eyes smaller like a typical old people thing.
+**Black and brown hair**
 
-<!--- Bold guy impact-->
-It's funny to see how it trys to create hair for bold people. It could handle that their exists people with no hair. Also it added some of the of the told behavier with lightening up the skin and making the eyes smaller.
+The translation to black and brown hair went exceptionally well in most cases. In some of the pictures, the difference between the generated picture and the original is almost undiscernible. 
 
-<!--- Hat dude aka Zack and Cody gone wild-->
-If you get some corrupted image like in the following one you see that it can't see the difference between what it should look like. It adds on the corrupeted data also the features.
+**Blonde and grey hair** 
 
-<!--- Hat dude aka Zack and Cody gone wild-->
-The next interesting part is with some persons who has accessoirs like a hat. It interprets that the persons haircuts is with the hat. So it changes the hat each time when some attributes are applyied.
+Blonde and grey hair, however, come with some noticeable "errors":
+Translation to blonde hair not only changed the hair color, it also lightened up the skin color of the target person and made their lips both redder and fuller. We suggest that the reason for this may be a slight bias in training data, with a larger part of the blonde hair pictures being from women. That way, during learning it may have also picked up on other trends, such as the make up or their, on average, lighter skin color. 
+A similar thing happened with translation to grey hair, where the face of the person is also made older in addition to changing the hair color. The person receives wrinkles, and it also tends to make their eyes slightly smaller. We believe the cause for this might be that a majority of grey hair pictures is from people of higher age. 
 
-Theses all observation we did, was on one trained network at the 200000 iteration. It was very interesting to watch how different it muted in one batch.
+**Baldness**
+
+When translating images of bald people, the network attempts to give them hair as well. This results in some very amusing pictures. 
+
+**Impact of Image Corruption**
+
+Sometimes, the generated pictures become corrupted while being processed by the dataloader. In such cases, the network is unable to distinguish between the corruption and the "real" part of the images. For hair color translation, this also results in color changes in the corrupted areas of the image.
+
+**Impact of Accessories**
+
+When translating pictures with more visible accessories, such as a hat, it applies changes very similar to the ones where the person is not wearing any. In the case of the hat, this also results in its color getting changed to the target hair color in our tests. 
+
+#### Network Parameters
+
+
 
 <!--- Batchsize-->
-We also compared between different batchsizes. Like you see in the images (below or up) that the training effect got worser if we increased the sizes. We got the best results with size 8. It by increasing the number of samples 
+We also compared between different batchsizes. Like you see in the images (below or up) that the training effect got worser if we increased the sizes. We got the best results with size 8. It by increasing the number of samples
 
 <!--- Discriminator learning rate -->
 
@@ -124,18 +135,22 @@ We also compared between different batchsizes. Like you see in the images (below
 
 
 
+<!--- Discriminator learning rate -->
+
+
+
 ## Testing with the same dataset
 
 <!--- Some comments to tests between the tests-->
 We also was able to manage to compare the different trained models on the same dataset. So we can compare different training results with each other.
 
-<!--- four images next to each other for the different batchsize and a gif number 56 is good for the testing part-->
+<!--- default for comparison between all of them -->
+
+<!--- four images next to each other for the different batchsize and a gif -->
 
 <!--- four images next to each other for the different learning rate -->
 
 <!--- four images next to each other for the different hingeloss instancenorm and default (wasserstein)-->
-
-<!--- default for comparison between all of them -->
 
 
 ## Using a webcam as input to the neural network
