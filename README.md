@@ -5,20 +5,8 @@
 Here you get a little teaser of what you can reproduce using the default settings.
 ![](Results/preview_final.jpg)
 
-## Introduction
-Image-to-Image translation is a field that has gained lots of traction in the recent years. In this project, we explore a pre-existing network structure for attribute-based face manipulation.  The goal is that given an input image  of a face, the network should generate an image of the same face while only changing an attribute such as hair color, gender, age, etc.
-
-Existing approaches have limited scalability and robustness for translation between more than two domains, since different models need to be built for every pair of image domains. Existing models are both inefficient and ineffective in multidomain image to image translation task. Their inefficiency results from the fact that in order to learn all mappings among k domains k(k-1) generators have to be trained. Each generator cannot fully use the training data and can only learn from two domains at a time out of k domains.
-
-Furthermore, they are incapable of jointly training domains from different datasets , because each dataset is only partially labeled. In the case of CelebA and RaFD, while the former contains labels for attributes such as hair color and gender, it does not have any labels for facial expressions such as happy and angry and vice versa for the latter.
-
-## Background
-
-StarGAN can learn mappings among multiple domains and by consequence learns the mappings between all available domains. The input of the StarGAN network is an image and domain information and learns to flexibly translate the image into the corresponding domain. During the training we randomly generate a target domain label and train the model to flexibly translate the image into any desired domain at testing phase.
-
-To overcome the current model problem with multiple datasets, a mask vector was added to the domain label. This ensures that the model ignores unknown labels and focus on the labels provided by a particular dataset, thus overcoming the problem of partially labeled datasets.
-
-A unified version of the label as a vector is represented as ![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png), where ![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png) represents a vector for the labels for the i-th dataset and m is the mask vector that allows StarGAN to ignore unspecified labels and focus only on the known ones.
+## Description
+An exploration of attribute-based face manipulation, using a pre-existing network structure as shown further below. The goal is that given an input image  of a face, the network should generate an image of the same face while only changing an attribute such as hair color, gender, age, etc.
 
 ## Dependencies
 
@@ -102,7 +90,7 @@ In this section we will talk about some of our results and possible interpretati
 
 To start, let's have a look at the default training configuration. We only changed the attributes that the network trained on while keeping all the parameters identical. We can see that some of our results look very well trained. There are some exceptions, however. 
 
-![](Results/default_first_pic.PNG) 
+![](Results/images_from_analysing/default_first_pic.png) 
 
 Since some attributes might be more prevalent on one gender than the other, in which case our model occasionally tends to also apply some other changes that are undesirable. Here are some of the observations we made:
 
@@ -112,14 +100,14 @@ Since some attributes might be more prevalent on one gender than the other, in w
 
 **Black and brown hair**
 
-![](Results/brown_black_girl.png) 
+![](Results/images_from_analysing/brown_black_girl.png) 
 
 The translation to black and brown hair went exceptionally well in most cases. In some of the pictures, the difference between the generated picture and the original is almost undiscernible. 
 
 
 **Blonde and grey hair** 
 
-![](Results/Guy_with_lipstick.PNG) 
+![](Results/images_from_analysing/Guy_with_lipstick.PNG) 
 
 Blonde and grey hair, however, come with some noticeable "errors":
 Translation to blonde hair not only changed the hair color, it also lightened up the skin color of the target person and made their lips both redder and fuller. We suggest that the reason for this may be a slight bias in training data, with a larger part of the blonde hair pictures being from women. That way, during learning it may have also picked up on other trends, such as the make up or their, on average, lighter skin color. 
@@ -128,21 +116,21 @@ A similar thing happened with translation to grey hair, where the face of the pe
 
 **Baldness**
 
-![](Results/Bold_guy.PNG) 
+![](Results/images_from_analysing/Bold_guy.PNG) 
 
 When translating images of bald people, the network attempts to give them hair as well. This results in some very amusing pictures. 
 
 
 **Impact of Image Corruption**
 
-![](Results/Girl_with_crazy_hairstyle.PNG) 
+![](Results/images_from_analysing/Girl_with_crazy_hairstyle.PNG) 
 
 Sometimes, the generated pictures become corrupted while being processed by the dataloader. In such cases, the network is unable to distinguish between the corruption and the "real" part of the images. For hair color translation, this also results in color changes in the corrupted areas of the image.
 
 
 **Impact of Accessories**
 
-![](Results/With_hat.PNG) 
+![](Results/images_from_analysing/With_hat.PNG) 
 
 When translating pictures with more visible accessories, such as a hat, it applies changes very similar to the ones where the person is not wearing any. In the case of the hat, this also results in its color getting changed to the target hair color in our tests. 
 
@@ -152,9 +140,14 @@ When translating pictures with more visible accessories, such as a hat, it appli
 
 <!--- Batchsize-->
 
-![]() 
+![](Results/images_from_analysing/Batchsize_8_überarbeitet.jpg)  ![](Results/images_from_analysing/Batchsize_16_überarbeitet.jpg)
 
-We also compared between different batchsizes. Like you see in the images (below or up) that the training effect got worser if we increased the sizes. We got the best results with size 8. It by increasing the number of samples
+
+![](Results/images_from_analysing/Batchsize_32_überarbeitet.jpg)  ![](Results/images_from_analysing/Batchsize_64_überarbeitet.jpg)
+
+
+
+We also compared between different batchsizes. Like you see in the images (below or up) that the training effect got worser if we increased the sizes. We got the best results with size 8. It by increasing the number of samples the quality of the images is getting LOST. 
 
 <!--- Discriminator learning rate -->
 
@@ -172,13 +165,8 @@ Like increasing we also decreased and saw after some iteration that the evolving
 
 <!--- Hingeloss -->
 
+
 <!--- instancenorm -->
-
-#### Instance Normalization using Look-Up Tables
-
-
-
-
 
 
 <!--- Discriminator learning rate -->
