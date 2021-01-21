@@ -5,8 +5,20 @@
 Here you get a little teaser of what you can reproduce using the default settings.
 ![](Results/preview_final.jpg)
 
-## Description
-An exploration of attribute-based face manipulation, using a pre-existing network structure as shown further below. The goal is that given an input image  of a face, the network should generate an image of the same face while only changing an attribute such as hair color, gender, age, etc.
+## Introduction
+Image-to-Image translation is a field that has gained lots of traction in the recent years. In this project, we explore a pre-existing network structure for attribute-based face manipulation.  The goal is that given an input image  of a face, the network should generate an image of the same face while only changing an attribute such as hair color, gender, age, etc.
+
+Existing approaches have limited scalability and robustness for translation between more than two domains, since different models need to be built for every pair of image domains. Existing models are both inefficient and ineffective in multidomain image to image translation task. Their inefficiency results from the fact that in order to learn all mappings among k domains k(k-1) generators have to be trained. Each generator cannot fully use the training data and can only learn from two domains at a time out of k domains.
+
+Furthermore, they are incapable of jointly training domains from different datasets , because each dataset is only partially labeled. In the case of CelebA and RaFD, while the former contains labels for attributes such as hair color and gender, it does not have any labels for facial expressions such as happy and angry and vice versa for the latter.
+
+## Background
+
+StarGAN can learn mappings among multiple domains and by consequence learns the mappings between all available domains. The input of the StarGAN network is an image and domain information and learns to flexibly translate the image into the corresponding domain. During the training we randomly generate a target domain label and train the model to flexibly translate the image into any desired domain at testing phase.
+
+To overcome the current model problem with multiple datasets, a mask vector was added to the domain label. This ensures that the model ignores unknown labels and focus on the labels provided by a particular dataset, thus overcoming the problem of partially labeled datasets.
+
+A unified version of the label as a vector is represented as ![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png), where ![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png) represents a vector for the labels for the i-th dataset and m is the mask vector that allows StarGAN to ignore unspecified labels and focus only on the known ones.
 
 ## Dependencies
 
@@ -160,8 +172,13 @@ Like increasing we also decreased and saw after some iteration that the evolving
 
 <!--- Hingeloss -->
 
-
 <!--- instancenorm -->
+
+#### Instance Normalization using Look-Up Tables
+
+
+
+
 
 
 <!--- Discriminator learning rate -->
