@@ -147,7 +147,8 @@ When translating pictures with more visible accessories, such as a hat, it appli
 
 
 
-We also compared between different batchsizes. Like you see in the images (below or up) that the training effect got worser if we increased the sizes. We got the best results with size 8. It by increasing the number of samples the quality of the images is getting LOST. 
+We also compared between different batchsizes. Like you see in the images (below or up) that the training effect got worser if we increased the sizes. We got the best results with size 8. It by increasing the number of samples the quality of the images is getting LOST. Additionally we see that if we increase the number of batches the failure increases like in the one with batchsize 32 and 64 in the second last row. The attribute of the haircolour isn't as precisely as in that one with lower batchsizes. We can think of it as if the number of picture is increased for the backpropagation then the amount of information is overwhelming and therefore the output results are lacking of information. Our observation was that we got the best training effects with the batchsize 8 because we have like almost no losses in the quality of the attribute trained images.
+
 
 <!--- Discriminator learning rate -->
 
@@ -163,13 +164,17 @@ Like increasing we also decreased and saw after some iteration that the evolving
 <!--- Generator learning rate -->
 
 
-<!--- Hingeloss -->
+As the experiments above we did some for the generator as well with increasing and decreasing the value of learing reate. 
 
+
+
+<!--- Hingeloss kash probiere done a tabelle zmache damit dia nebetand sind-->
+![](Results/images_from_analysing/hingeloss_10k.jpg) ![](Results/images_from_analysing/hingeloss_100k.jpg) ![](Results/images_from_analysing/hingeloss_200k.jpg)
+
+We also tried not just to change the learning rate, we also tried to modify the lossfunctions. As seen in the default setting is implemented with [Wasserstein Loss](https://papers.nips.cc/paper/2015/file/a9eb812238f753132652ae09963a05e9-Paper.pdf). We tried some other loss functions like the [hingeloss](https://en.wikipedia.org/wiki/Hinge_loss) if they would perform better like get better trained images after less iterations or better generated images with perfect set attributes. In the images above we see some like no more improvment after 100000 iterations and some attributes could applied well.
 
 <!--- instancenorm -->
 
-
-<!--- Discriminator learning rate -->
 
 
 
