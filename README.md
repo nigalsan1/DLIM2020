@@ -90,49 +90,78 @@ In this section we will talk about some of our results and possible interpretati
 
 To start, let's have a look at the default training configuration. We only changed the attributes that the network trained on while keeping all the parameters identical. We can see that some of our results look very well trained. There are some exceptions, however. 
 
-- *Image*
+![](Results/default_first_pic.PNG) 
 
 Since some attributes might be more prevalent on one gender than the other, in which case our model occasionally tends to also apply some other changes that are undesirable. Here are some of the observations we made:
+
+
 
 #### Attributes
 
 **Black and brown hair**
 
+![](Results/brown_black_girl.png) 
+
 The translation to black and brown hair went exceptionally well in most cases. In some of the pictures, the difference between the generated picture and the original is almost undiscernible. 
 
+
 **Blonde and grey hair** 
+
+![](Results/Guy_with_lipstick.PNG) 
 
 Blonde and grey hair, however, come with some noticeable "errors":
 Translation to blonde hair not only changed the hair color, it also lightened up the skin color of the target person and made their lips both redder and fuller. We suggest that the reason for this may be a slight bias in training data, with a larger part of the blonde hair pictures being from women. That way, during learning it may have also picked up on other trends, such as the make up or their, on average, lighter skin color. 
 A similar thing happened with translation to grey hair, where the face of the person is also made older in addition to changing the hair color. The person receives wrinkles, and it also tends to make their eyes slightly smaller. We believe the cause for this might be that a majority of grey hair pictures is from people of higher age. 
 
+
 **Baldness**
+
+![](Results/Bold_guy.PNG) 
 
 When translating images of bald people, the network attempts to give them hair as well. This results in some very amusing pictures. 
 
+
 **Impact of Image Corruption**
+
+![](Results/Girl_with_crazy_hairstyle.PNG) 
 
 Sometimes, the generated pictures become corrupted while being processed by the dataloader. In such cases, the network is unable to distinguish between the corruption and the "real" part of the images. For hair color translation, this also results in color changes in the corrupted areas of the image.
 
+
 **Impact of Accessories**
 
+![](Results/With_hat.PNG) 
+
 When translating pictures with more visible accessories, such as a hat, it applies changes very similar to the ones where the person is not wearing any. In the case of the hat, this also results in its color getting changed to the target hair color in our tests. 
+
 
 #### Network Parameters
 
 
-
 <!--- Batchsize-->
+
+![]() 
+
 We also compared between different batchsizes. Like you see in the images (below or up) that the training effect got worser if we increased the sizes. We got the best results with size 8. It by increasing the number of samples
 
 <!--- Discriminator learning rate -->
 
+![](Results/Discriminator_learningrate_0.0005/200000-images-d-lr0.0005.jpg) 
+
+
+We saw some interesting effects with increasing and decreasing the learningrate of the discriminator. We set the learning rate of the generator like it was before and started to play around with the just one parameter. First we increased the discriminator in the hope that it will get better in identifying the fake images the generator produced. But we underestimated the impact of the setting the learningrate 5 times higher (d_learningrate=0.0005 & g_learningrate=0.0001). We thought the backpropagation will get a better for the discriminator but never that thought it will increase that much. Like in the image you are watching above. This image is produced after 200k iterations.
+
+![](Results/Generator_learningrate_0.00001/200000-images-g-lr0.00001.jpg) 
+
+Like increasing we also decreased and saw after some iteration that the evolving process was small.(d_learningrate=0.00001 & g_learningrate=0.0001) after 200k iteration again.
+
 <!--- Generator learning rate -->
+
 
 <!--- Hingeloss -->
 
-<!--- instancenorm -->
 
+<!--- instancenorm -->
 
 
 <!--- Discriminator learning rate -->
