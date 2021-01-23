@@ -127,18 +127,17 @@ When translating images of bald people, the network attempts to give them hair a
 
 Sometimes, the generated pictures become corrupted while being processed by the dataloader. In such cases, the network is unable to distinguish between the corruption and the "real" part of the images. For hair color translation, this also results in color changes in the corrupted areas of the image.
 
-
 **Impact of Accessories**
 
 ![](Results/images_from_analysing/With_hat.PNG) 
 
 When translating pictures with more visible accessories, such as a hat, it applies changes very similar to the ones where the person is not wearing any. In the case of the hat, this also results in its color getting changed to the target hair color in our tests. 
 
-
 #### Network Parameters
 
+In this section, we will talk about some of the results that we've gained when adjusting parameters such as batch size, or learning rate.
 
-<!--- Batchsize-->
+**Batch Size**
 
 ![](Results/images_from_analysing/Batchsize_8_überarbeitet.jpg)  ![](Results/images_from_analysing/Batchsize_16_überarbeitet.jpg)
 
@@ -147,15 +146,14 @@ When translating pictures with more visible accessories, such as a hat, it appli
 
 
 
-We also compared between different batchsizes. Like you see in the images (below or up) that the training effect got worser if we increased the sizes. We got the best results with size 8. It by increasing the number of samples the quality of the images is getting LOST. Additionally we see that if we increase the number of batches the failure increases like in the one with batchsize 32 and 64 in the second last row. The attribute of the haircolour isn't as precisely as in that one with lower batchsizes. We can think of it as if the number of picture is increased for the backpropagation then the amount of information is overwhelming and therefore the output results are lacking of information. Our observation was that we got the best training effects with the batchsize 8 because we have like almost no losses in the quality of the attribute trained images.
+We also compared between different batchsizes. Like you see in the images (below or up) that the training effect got worser if we increased the sizes. We got the best results with size 8. It by increasing the number of samples the quality of the images is getting LOST. Additionally we see that if we increase the number of batches the failure increases like in the one with batchsize 32 and 64 in the second last row. The attribute of the haircolour isn't as accurate as in that one with lower batchsizes. We can think of it as if the number of picture is increased for the backpropagation then the amount of information is overwhelming and therefore the output results are lacking in information. Our observation was that we got the best training effects with the batchsize 8 because we have almost no losses in the quality of the attribute trained images.
 
-
-<!--- Discriminator learning rate -->
+**Discriminator learning rate **
 
 ![](Results/Discriminator_learningrate_0.0005/200000-images-d-lr0.0005.jpg) 
 
 
-We saw some interesting effects with increasing and decreasing the learningrate of the discriminator. We set the learning rate of the generator like it was before and started to play around with the just one parameter. First we increased the discriminator in the hope that it will get better in identifying the fake images the generator produced. But we underestimated the impact of the setting the learningrate 5 times higher (d_learningrate=0.0005 & g_learningrate=0.0001). We thought the backpropagation will get a better for the discriminator but never that thought it will increase that much. Like in the image you are watching above. This image is produced after 200k iterations.
+We saw some interesting effects with increasing and decreasing the learningrate of the discriminator. We set the learning rate of the generator like it was before and started to play around with the just one parameter. First we increased the discriminator in the hope that it will get better in identifying the fake images the generator produced. But we underestimated the impact of the setting the learningrate 5 times higher (d_learningrate=0.0005 & g_learningrate=0.0001). We thought the backpropagation will get better for the discriminator but never thought it would increase that much, like in the image you are watching above.
 
 ![](Results/Generator_learningrate_0.00001/200000-images-g-lr0.00001.jpg) 
 
@@ -169,11 +167,18 @@ As the experiments above we did some for the generator as well with increasing a
 
 
 <!--- Hingeloss kash probiere done a tabelle zmache damit dia nebetand sind-->
+
 ![](Results/images_from_analysing/hingeloss_10k.jpg) ![](Results/images_from_analysing/hingeloss_100k.jpg) ![](Results/images_from_analysing/hingeloss_200k.jpg)
 
 We also tried not just to change the learning rate, we also tried to modify the lossfunctions. As seen in the default setting is implemented with [Wasserstein Loss](https://papers.nips.cc/paper/2015/file/a9eb812238f753132652ae09963a05e9-Paper.pdf). We tried some other loss functions like the [hingeloss](https://en.wikipedia.org/wiki/Hinge_loss) if they would perform better like get better trained images after less iterations or better generated images with perfect set attributes. In the images above we see some like no more improvment after 100000 iterations and some attributes could applied well.
 
-<!--- instancenorm -->
+**Instance Normalization**
+
+The last change we implemented was adding lookup tables to our instance normalization layers for storing mean and variance for individual attributes. Since we give each attribute a singular index, we were consequently forced to choose mutually exclusive attributes for training (i.e only one of the training attributes can apply to a single picture).
+
+![](C:\Users\1stUn\polybox\ETH Materialien\Semester 5\DLIM P&S\DLIM2020\Results\images_from_analysing\New_IN.jpg)
+
+Looking at our results, we see that the effects that each hair color has on our input image is much more pronounced than it already was. Especially in the case of translating to blonde hair for the middle two pictures, we see that the output is even more feminine, with full, red lips and extended eyelashes/makeup. Also, it has problems with bald people and people of darker skin color, as seen in the last row. 
 
 
 
@@ -204,8 +209,6 @@ In the following Gif you get a idea of how the system is evolving through these 
 Here you see a really bad result of the training. We set the learning rate for the discriminator 50-times higher than the one for the generator. We concluded that the discriminator performing way better than the generator and you see it in the short gif.
 
 
-## Acknowledgements
+## Conclusion
 
-This work is just for study purpose. We were a group of three electrical engineer which are doing this just for fun
 
-##
