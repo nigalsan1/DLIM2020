@@ -5,8 +5,21 @@
 Here you get a little teaser of what you can reproduce using the default settings.
 ![](Results/preview_final.jpg)
 
-## Description
-An exploration of attribute-based face manipulation, using a pre-existing network structure as shown further below. The goal is that given an input image  of a face, the network should generate an image of the same face while only changing an attribute such as hair color, gender, age, etc.
+## Introduction
+
+Image-to-Image translation is a field that has gained lots of traction in the recent years. In this project, we explore a pre-existing network structure for attribute-based face manipulation.  The goal is that given an input image  of a face, the network should generate an image of the same face while only changing an attribute such as hair color, gender, age, etc.
+
+Existing approaches have limited scalability and robustness for translation between more than two domains, since different models need to be built for every pair of image domains. Existing models are both inefficient and ineffective in multidomain image to image translation task. Their inefficiency results from the fact that in order to learn all mappings among k domains k(k-1) generators have to be trained. Each generator cannot fully use the training data and can only learn from two domains at a time out of k domains.
+
+Furthermore, they are incapable of jointly training domains from different datasets , because each dataset is only partially labeled. In the case of CelebA and RaFD, while the former contains labels for attributes such as hair color and gender, it does not have any labels for facial expressions such as happy and angry and vice versa for the latter.
+
+## Background
+
+StarGAN can learn mappings among multiple domains and by consequence learns the mappings between all available domains. The input of the StarGAN network is an image and domain information and learns to flexibly translate the image into the corresponding domain. During the training we randomly generate a target domain label and train the model to flexibly translate the image into any desired domain at testing phase.
+
+To overcome the current model problem with multiple datasets, a mask vector was added to the domain label. This ensures that the model ignores unknown labels and focus on the labels provided by a particular dataset, thus overcoming the problem of partially labeled datasets.
+
+A unified version of the label as a vector is represented as ![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png), where ![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png) represents a vector for the labels for the i-th dataset and m is the mask vector that allows StarGAN to ignore unspecified labels and focus only on the known ones.
 
 ## Dependencies
 
@@ -86,7 +99,7 @@ Your results will be saved into `[Choose StarGAN]/stargan_celeba/result`.
 
 ## Analysis of our training sets
 
-In this section we will talk about some of our results and possible interpretations of the data. 
+In this section we will talk about some of our results and possible interpretations of the data.
 
 To start, let's have a look at the default training configuration. We only changed the attributes that the network trained on while keeping all the parameters identical. We can see that some of our results look very well trained. There are some exceptions, however. 
 
@@ -135,7 +148,7 @@ When translating pictures with more visible accessories, such as a hat, it appli
 
 #### Network Parameters
 
-In this section, we will talk about some of the results that we've gained when adjusting parameters such as batch size, or learning rate.
+In this section, we will talk about some of the results that we've gained by adjusting parameters such as batch size, or learning rate.
 
 **Batch Size**
 
@@ -146,29 +159,26 @@ In this section, we will talk about some of the results that we've gained when a
 
 
 
-We also compared between different batchsizes. Like you see in the images (below or up) that the training effect got worser if we increased the sizes. We got the best results with size 8. It by increasing the number of samples the quality of the images is getting LOST. Additionally we see that if we increase the number of batches the failure increases like in the one with batchsize 32 and 64 in the second last row. The attribute of the haircolour isn't as accurate as in that one with lower batchsizes. We can think of it as if the number of picture is increased for the backpropagation then the amount of information is overwhelming and therefore the output results are lacking in information. Our observation was that we got the best training effects with the batchsize 8 because we have almost no losses in the quality of the attribute trained images.
+We trained the network on different batch sizes between 8 and 64. Surprisingly, the results became worse the larger the batch size. The best results are from the network with batch size 8. By increasing the amount of images per batch, detail and sharpness decreases. We also see that if we increase batch size, the failure rate increases (unproven). Examples are the second last rows of batch sizes 32 and 64. Hair color isn't as accurate as in the ones with lower batch sizes. We can think of it as if the number of picture is increased for the backpropagation then the amount of information is overwhelming and therefore the output results are lacking in information. Our observation was that we got the best training effects with the batchsize 8 because we have almost no losses in the quality of the attribute trained images.
 
-**Discriminator learning rate **
+**Discriminator Learning Rate **
 
 ![](Results/Discriminator_learningrate_0.0005/200000-images-d-lr0.0005.jpg) 
 
 
-We saw some interesting effects with increasing and decreasing the learningrate of the discriminator. We set the learning rate of the generator like it was before and started to play around with the just one parameter. First we increased the discriminator in the hope that it will get better in identifying the fake images the generator produced. But we underestimated the impact of the setting the learningrate 5 times higher (d_learningrate=0.0005 & g_learningrate=0.0001). We thought the backpropagation will get better for the discriminator but never thought it would increase that much, like in the image you are watching above.
+We saw some interesting effects with increasing and decreasing the learning rate of the discriminator, while keeping the generator learning rate constant. We started by increasing the discriminator learning rate, hoping that it would get better in identifying the fake images the generator produced. However, we underestimated the impact of setting the learning rate 5 times higher (d_learningrate=0.0005 & g_learningrate=0.0001). We thought the backpropagation would get better for the discriminator, yet we never thought it would have such a profound impact, as seen in the above image.
 
 ![](Results/Generator_learningrate_0.00001/200000-images-g-lr0.00001.jpg) 
 
-Like increasing we also decreased and saw after some iteration that the evolving process was small.(d_learningrate=0.00001 & g_learningrate=0.0001) after 200k iteration again.
+We also tried decreasing the learning rate. Here, the network adapted and learned a lot slower (Who would have guessed).
 
-<!--- Generator learning rate -->
+**Generator Learning Rate**
 
-
-As the experiments above we did some for the generator as well with increasing and decreasing the value of learing reate. 
-
-
+Similar to before, we also adjusted the generator learning rate, while keeping the discriminator learning rate a constant.
 
 <!--- Hingeloss kash probiere done a tabelle zmache damit dia nebetand sind-->
 
-![](Results/images_from_analysing/hingeloss_10k.jpg) ![](Results/images_from_analysing/hingeloss_100k.jpg) ![](Results/images_from_analysing/hingeloss_200k.jpg)
+<img src="Results/images_from_analysing/hingeloss_10k.jpg" style="zoom:80%;" /> <img src="Results/images_from_analysing/hingeloss_100k.jpg" style="zoom:80%;" /> <img src="Results/images_from_analysing/hingeloss_200k.jpg" style="zoom:80%;" />
 
 We also tried not just to change the learning rate, we also tried to modify the lossfunctions. As seen in the default setting is implemented with [Wasserstein Loss](https://papers.nips.cc/paper/2015/file/a9eb812238f753132652ae09963a05e9-Paper.pdf). We tried some other loss functions like the [hingeloss](https://en.wikipedia.org/wiki/Hinge_loss) if they would perform better like get better trained images after less iterations or better generated images with perfect set attributes. In the images above we see some like no more improvment after 100000 iterations and some attributes could applied well.
 
@@ -176,9 +186,10 @@ We also tried not just to change the learning rate, we also tried to modify the 
 
 The last change we implemented was adding lookup tables to our instance normalization layers for storing mean and variance for individual attributes. Since we give each attribute a singular index, we were consequently forced to choose mutually exclusive attributes for training (i.e only one of the training attributes can apply to a single picture).
 
-![](C:\Users\1stUn\polybox\ETH Materialien\Semester 5\DLIM P&S\DLIM2020\Results\images_from_analysing\New_IN.jpg)
+<img src="C:\Users\1stUn\polybox\ETH Materialien\Semester 5\DLIM P&S\DLIM2020\Results\images_from_analysing\New_IN.jpg" style="zoom: 50%;" />
 
 Looking at our results, we see that the effects that each hair color has on our input image is much more pronounced than it already was. Especially in the case of translating to blonde hair for the middle two pictures, we see that the output is even more feminine, with full, red lips and extended eyelashes/makeup. Also, it has problems with bald people and people of darker skin color, as seen in the last row. 
+Since now our network has separate means and variances stored for each attribute, we believe that this causes the network to have a harder time generalizing and applying what it's learnt to new inputs.
 
 
 
@@ -196,9 +207,9 @@ We also was able to manage to compare the different trained models on the same d
 
 <!--- four images next to each other for the different hingeloss instancenorm and default (wasserstein)-->
 
+## Live Image Translation
 
-## Using a webcam as input to the neural network
-using the opencv library to recognize a face, crop it, resize and feed it to the neural network
+With the help of the [OpenCV](https://pypi.org/project/opencv-python/) Library, we added the possibility for live translation using a connected camera as an input. Before the image is fed into the neural network, it is automatically cropped and appropriately resized. 
 
 ## Some results
 
@@ -211,4 +222,9 @@ Here you see a really bad result of the training. We set the learning rate for t
 
 ## Conclusion
 
+While the topic of attribute based image to image translation has gained lots of traction in the recent years, previous approaches had trouble flexibly translating among multiple domains. StarGAN attempts to fix these by allowing a single generator and discriminator pair to learn from multiple domains.
+Using said network as our baseline, we were able to explore the inner workings of modern CNNs, while also achieving some interesting results by changing network parameters and replacing parts of the network - such as adding a new loss function or changing the way the network normalizes its input images. 
+Finally, we also managed an implementation of real-time face-translation using a connected camera as an input. 
+Although no quantitative analysis has been offered inside this project, many of the results speak for themselves. 
+We're happy with the results that we have gathered, and hope to be able to apply the knowledge we gained in some of our future projects.
 
