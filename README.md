@@ -162,7 +162,7 @@ In this section, we will talk about some of the results that we've gained by adj
 We trained the network on different batch sizes between 8 and 64. Surprisingly, the results became worse the larger the batch size. The best results are from the network with batch size 8. By increasing the amount of images per batch, detail and sharpness decreases. We also see that if we increase batch size, the failure rate increases (unproven). Examples are the second last rows of batch sizes 32 and 64. Hair color isn't as accurate as in the ones with lower batch sizes. We can think of it as if the number of picture is increased for the backpropagation then the amount of information is overwhelming and therefore the output results are lacking in information. Our observation was that we got the best training effects with the batchsize 8 because we have almost no losses in the quality of the attribute trained images.
 
 
-**Discriminator Learning Rate **
+**Discriminator Learning Rate**
 
 ![](Results/Discriminator_learningrate_0.0005/200000-images-d-lr0.0005.jpg) 
 
@@ -197,6 +197,7 @@ Looking at our results, we see that the effects that each hair color has on our 
 Since now our network has separate means and variances stored for each attribute, we believe that this causes the network to have a harder time generalizing and applying what it's learnt to new inputs.
 
 
+If you are interested in all our results you can klick [here](https://github.com/nigalsan1/DLIM2020/tree/main/Results)
 
 
 ## Testing with the same dataset
@@ -205,7 +206,7 @@ Since now our network has separate means and variances stored for each attribute
 We also was able to manage to compare the different trained models on the same dataset. So we can compare different training results with each other. The significant difference between each method we explained in the deep analysis. Each of the following images we tested with the models from 200000th iteration. 
 
 <!--- default for comparison between all of them -->
-![](Results/Default (Batchsize 16)/batchsize-16-test.jpg) ![](Results/Default (Batchsize 16)/batchsize-16-test.jpg) ![]() ![]()
+![](Results/Test_images/batchsize-16-test.jpg)  ![](Results/Test_images/batchsize-16-test.jpg) ![]() ![]()
 <!--- four images next to each other for the different batchsize and a gif -->
 ![]() ![]() ![]()
 <!--- four images next to each other for the different learning rate -->
