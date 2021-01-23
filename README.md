@@ -161,22 +161,27 @@ In this section, we will talk about some of the results that we've gained by adj
 
 We trained the network on different batch sizes between 8 and 64. Surprisingly, the results became worse the larger the batch size. The best results are from the network with batch size 8. By increasing the amount of images per batch, detail and sharpness decreases. We also see that if we increase batch size, the failure rate increases (unproven). Examples are the second last rows of batch sizes 32 and 64. Hair color isn't as accurate as in the ones with lower batch sizes. We can think of it as if the number of picture is increased for the backpropagation then the amount of information is overwhelming and therefore the output results are lacking in information. Our observation was that we got the best training effects with the batchsize 8 because we have almost no losses in the quality of the attribute trained images.
 
+
 **Discriminator Learning Rate **
 
 ![](Results/Discriminator_learningrate_0.0005/200000-images-d-lr0.0005.jpg) 
 
 
-We saw some interesting effects with increasing and decreasing the learning rate of the discriminator, while keeping the generator learning rate constant. We started by increasing the discriminator learning rate, hoping that it would get better in identifying the fake images the generator produced. However, we underestimated the impact of setting the learning rate 5 times higher (d_learningrate=0.0005 & g_learningrate=0.0001). We thought the backpropagation would get better for the discriminator, yet we never thought it would have such a profound impact, as seen in the above image.
+We saw some interesting effects with increasing and decreasing the learning rate of the discriminator, while keeping the generator learning rate constant. We started by increasing the discriminator learning rate, hoping that it would get better in identifying the fake images the generator produced. However, we underestimated the impact of setting the learning rate 5 times higher (d_learningrate=0.0005 & g_learningrate=0.0001). We thought the backpropagation would get better for the discriminator, yet we never thought it would have such a profound impact, as seen in the above image. Each of the images are generated after 200000 iteration.
 
-![](Results/Generator_learningrate_0.00001/200000-images-g-lr0.00001.jpg) 
+![](Results/Discriminator_learningrate_0.00001/200000-images-d-lr0.00001.jpg) 
 
-We also tried decreasing the learning rate. Here, the network adapted and learned a lot slower (Who would have guessed).
+We also tried decreasing the learning rate(). Here, the network adapted and learned a lot slower (Who would have guessed).
 
 **Generator Learning Rate**
 
-Similar to before, we also adjusted the generator learning rate, while keeping the discriminator learning rate a constant.
+![](Results/Generator_learningrate_0.005/200000-images-g-lr0.005.jpg) 
 
-<!--- Hingeloss kash probiere done a tabelle zmache damit dia nebetand sind-->
+Similar to before, we also adjusted the generator learning rate, while keeping the discriminator learning rate a constant. We saw similary results like if we are increasing the learning rate of the generator we get almost no learning effects for the discriminator and after a low number of iterations (50000) there was no big changing in the image quality. Above you see a batch with increased learning rate of the generator (g_learningrate=0.005 & d_learningrate=0.0001 ) and below you see one with decreased one (g_learningrate=0.00001 & d_learningrate=0.0001) at iteration 200000.
+
+![](Results/Generator_learningrate_0.00001/200000-images-g-lr0.00001.jpg) 
+
+<!--- Hingeloss ->
 
 <img src="Results/images_from_analysing/hingeloss_10k.jpg" style="zoom:80%;" /> <img src="Results/images_from_analysing/hingeloss_100k.jpg" style="zoom:80%;" /> <img src="Results/images_from_analysing/hingeloss_200k.jpg" style="zoom:80%;" />
 
@@ -197,16 +202,16 @@ Since now our network has separate means and variances stored for each attribute
 ## Testing with the same dataset
 
 <!--- Some comments to tests between the tests-->
-We also was able to manage to compare the different trained models on the same dataset. So we can compare different training results with each other.
+We also was able to manage to compare the different trained models on the same dataset. So we can compare different training results with each other. The significant difference between each method we explained in the deep analysis. Each of the following images we tested with the models from 200000th iteration. 
 
 <!--- default for comparison between all of them -->
-
+![](Results/Default (Batchsize 16)/batchsize-16-test.jpg) ![](Results/Default (Batchsize 16)/batchsize-16-test.jpg) ![]() ![]()
 <!--- four images next to each other for the different batchsize and a gif -->
-
+![]() ![]() ![]()
 <!--- four images next to each other for the different learning rate -->
-
+![]() ![]() ![]() ![]()
 <!--- four images next to each other for the different hingeloss instancenorm and default (wasserstein)-->
-
+![]() ![]() ![]() ![]()
 ## Live Image Translation
 
 With the help of the [OpenCV](https://pypi.org/project/opencv-python/) Library, we added the possibility for live translation using a connected camera as an input. Before the image is fed into the neural network, it is automatically cropped and appropriately resized. 
