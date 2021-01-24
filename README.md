@@ -19,11 +19,7 @@ StarGAN can learn mappings among multiple domains and by consequence learns the 
 
 To overcome the current model problem with multiple datasets, a mask vector was added to the domain label. This ensures that the model ignores unknown labels and focus on the labels provided by a particular dataset, thus overcoming the problem of partially labeled datasets.
 
-A unified version of the label as a vector is represented as  $$ 
-
-
-
-![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png), where ![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png) represents a vector for the labels for the i-th dataset and m is the mask vector that allows StarGAN to ignore unspecified labels and focus only on the known ones.
+A unified version of the label as a vector is represented as  ![img](Results\images_from_analysing/clip_image002.png), where ![img](Results\images_from_analysing/clip_image004.png) represents a vector for the labels for the i-th dataset and m is the mask vector that allows StarGAN to ignore unspecified labels and focus only on the known ones.
 
 ## Dependencies
 
@@ -187,7 +183,7 @@ Similar to before, we also adjusted the generator learning rate, while keeping t
 
 **Hinge loss**
 
-<img src="Results/images_from_analysing/hingeloss_10k.jpg" style="zoom:70%;" /> <img src="Results/images_from_analysing/hingeloss_100k.jpg" style="zoom:70%;" /> <img src="Results/images_from_analysing/hingeloss_200k.jpg" style="zoom:70%;" />
+<img src="Results/images_from_analysing/hingeloss_10k.jpg" style="zoom: 50%;" /> <img src="Results/images_from_analysing/hingeloss_100k.jpg" style="zoom: 50%;" /> <img src="Results/images_from_analysing/hingeloss_200k.jpg" style="zoom: 50%;" />
 
 
 We also tried not just to change the learning rate, we also tried to modify the lossfunctions. As seen in the default setting is implemented with [Wasserstein Loss](https://papers.nips.cc/paper/2015/file/a9eb812238f753132652ae09963a05e9-Paper.pdf). We tried some other loss functions like the [hingeloss](https://en.wikipedia.org/wiki/Hinge_loss) if they would perform better like get better trained images after less iterations or better generated images with perfect set attributes. In the images above we see some like no more improvment after 100000 iterations and some attributes could applied well.
@@ -196,7 +192,7 @@ We also tried not just to change the learning rate, we also tried to modify the 
 
 The last change we implemented was adding lookup tables to our instance normalization layers for storing mean and variance for individual attributes. Since we give each attribute a singular index, we were consequently forced to choose mutually exclusive attributes for training (i.e only one of the training attributes can apply to a single picture).
 
-<img src="C:\Users\1stUn\polybox\ETH Materialien\Semester 5\DLIM P&S\DLIM2020\Results\images_from_analysing\New_IN.jpg" style="zoom: 50%;" />
+<img src="Results\images_from_analysing\New_IN.jpg" style="zoom: 50%;" />
 
 Looking at our results, we see that the effects that each hair color has on our input image is much more pronounced than it already was. Especially in the case of translating to blonde hair for the middle two pictures, we see that the output is even more feminine, with full, red lips and extended eyelashes/makeup. Also, it has problems with bald people and people of darker skin color, as seen in the last row. 
 Since now our network has separate means and variances stored for each attribute, we believe that this causes the network to have a harder time generalizing and applying what it's learnt to new inputs.
