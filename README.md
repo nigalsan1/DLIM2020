@@ -181,9 +181,10 @@ Similar to before, we also adjusted the generator learning rate, while keeping t
 
 ![](Results/Generator_learningrate_0.00001/200000-images-g-lr0.00001.jpg) 
 
-<!--- Hingeloss ->
+**Hinge loss**
 
-<img src="Results/images_from_analysing/hingeloss_10k.jpg" style="zoom:80%;" /> <img src="Results/images_from_analysing/hingeloss_100k.jpg" style="zoom:80%;" /> <img src="Results/images_from_analysing/hingeloss_200k.jpg" style="zoom:80%;" />
+<img src="Results/images_from_analysing/hingeloss_10k.jpg" style="zoom:70%;" /> <img src="Results/images_from_analysing/hingeloss_100k.jpg" style="zoom:70%;" /> <img src="Results/images_from_analysing/hingeloss_200k.jpg" style="zoom:70%;" />
+
 
 We also tried not just to change the learning rate, we also tried to modify the lossfunctions. As seen in the default setting is implemented with [Wasserstein Loss](https://papers.nips.cc/paper/2015/file/a9eb812238f753132652ae09963a05e9-Paper.pdf). We tried some other loss functions like the [hingeloss](https://en.wikipedia.org/wiki/Hinge_loss) if they would perform better like get better trained images after less iterations or better generated images with perfect set attributes. In the images above we see some like no more improvment after 100000 iterations and some attributes could applied well.
 
@@ -197,22 +198,27 @@ Looking at our results, we see that the effects that each hair color has on our 
 Since now our network has separate means and variances stored for each attribute, we believe that this causes the network to have a harder time generalizing and applying what it's learnt to new inputs.
 
 
-If you are interested in all our results you can klick [here](https://github.com/nigalsan1/DLIM2020/tree/main/Results)
-
+If you are interested in all of our results you can klick [here](https://github.com/nigalsan1/DLIM2020/tree/main/Results) to get directly to the results folder.
 
 ## Testing with the same dataset
 
 <!--- Some comments to tests between the tests-->
 We also was able to manage to compare the different trained models on the same dataset. So we can compare different training results with each other. The significant difference between each method we explained in the deep analysis. Each of the following images we tested with the models from 200000th iteration. 
 
+To get a idea of what impact the different adjustement were made we set the first images the same for each row.
 <!--- default for comparison between all of them -->
-![](Results/Test_images/batchsize-16-test.jpg)  ![](Results/Test_images/batchsize-16-test.jpg) ![]() ![]()
+![](Results/Test_images/batchsize-16-test.jpg)  ![]() ![]() ![]()
+
 <!--- four images next to each other for the different batchsize and a gif -->
-![]() ![]() ![]()
+![](Results/Test_images/batchsize-16-test.jpg) ![]() ![]()
+
 <!--- four images next to each other for the different learning rate -->
-![]() ![]() ![]() ![]()
+![](Results/Test_images/batchsize-16-test.jpg) ![]() ![]() ![]()
+
 <!--- four images next to each other for the different hingeloss instancenorm and default (wasserstein)-->
-![]() ![]() ![]() ![]()
+![](Results/Test_images/batchsize-16-test.jpg) ![]() ![]() ![]()
+
+
 ## Live Image Translation
 
 With the help of the [OpenCV](https://pypi.org/project/opencv-python/) Library, we added the possibility for live translation using a connected camera as an input. Before the image is fed into the neural network, it is automatically cropped and appropriately resized. 
