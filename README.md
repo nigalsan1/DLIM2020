@@ -223,14 +223,6 @@ To get a idea of what impact the different adjustement were made we set the firs
 
 With the help of the [OpenCV](https://pypi.org/project/opencv-python/) Library, we added the possibility for live translation using a connected camera as an input. Before the image is fed into the neural network, it is automatically cropped and appropriately resized. 
 
-## Some results
-
-![](Results/Gif/Batchsize_8.gif) \
-In the following Gif you get a idea of how the system is evolving through these 200000 iterations. Each images is made after 1000 iterations. We choose here a batchsize of 8 and the attributes black hair, blond hair, brown hair, male and young (from left to right, where the first image is the input.)
-
-![](Results/Gif/D_lr_0.0005.gif) \
-Here you see a really bad result of the training. We set the learning rate for the discriminator 50-times higher than the one for the generator. We concluded that the discriminator performing way better than the generator and you see it in the short gif.
-
 
 ## Conclusion
 
