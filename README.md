@@ -207,6 +207,31 @@ If you are interested in all of our results you can klick [here](https://github.
 We also was able to manage to compare the different trained models on the same dataset. So we can compare different training results with each other. The significant difference between each method we explained in the deep analysis. Each of the following images we tested with the models from 200000th iteration. 
 
 To get a idea of what impact the different adjustement were made we set the first images the same for each row.
+| **Default**     | **Batch Size 8**     |
+| ---- | ---- |
+|   <img src="Results/Test_images/batchsize-16-test.jpg"/>   | <img src="Results/Test_images/batchsize-8-test.jpg"/>     |
+| **Default**     | **Batch Size 32**     |
+| ---- | ---- |
+|  <img src="Results/Test_images/batchsize-16-test.jpg"/>    |   <img src="Results/Test_images/batchsize-32-test.jpg"/>   |
+| **Default**     | **D-Learning Rate 0.00001** |
+| ---- | ---- |
+|   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |  <img src="Results/Test_images/d-lr-0.00001-test.jpg"/>    |
+| **Default**     | **D-Learning Rate 0.0005**     |
+| ---- | ---- |
+|   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |   <img src="Results/Test_images/d-lr-0.0005.jpg"/>   |
+| **Default**     | **G-Learning Rate 0.00001**     |
+| ---- | ---- |
+|   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |   <img src="Results/Test_images/g-lr-0.00001.jpg"/>   |
+| **Default**     | **G-Learning Rate 0.005**     |
+| ---- | ---- |
+|   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |  <img src="Results/Test_images/g-lr-0.005.jpg"/>    |
+| **Default**     | **Hinge Loss**     |
+| ---- | ---- |
+|   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |  <img src="Results/Test_images/hingeloss.jpg"/>    |
+| **Default**     | **New Instance Norm**     |
+| ---- | ---- |
+|   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |  <img src="Results/Test_images/new_instance_norm.jpg"/>    |
+
 <!--- default for comparison between all of them -->
 ![](Results/Test_images/batchsize-16-test.jpg)  ![]() ![]() ![]()
 
