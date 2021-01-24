@@ -19,7 +19,11 @@ StarGAN can learn mappings among multiple domains and by consequence learns the 
 
 To overcome the current model problem with multiple datasets, a mask vector was added to the domain label. This ensures that the model ignores unknown labels and focus on the labels provided by a particular dataset, thus overcoming the problem of partially labeled datasets.
 
-A unified version of the label as a vector is represented as ![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png), where ![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png) represents a vector for the labels for the i-th dataset and m is the mask vector that allows StarGAN to ignore unspecified labels and focus only on the known ones.
+A unified version of the label as a vector is represented as  $$ 
+
+
+
+![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png), where ![img](file:///C:/Users/1stUn/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png) represents a vector for the labels for the i-th dataset and m is the mask vector that allows StarGAN to ignore unspecified labels and focus only on the known ones.
 
 ## Dependencies
 
