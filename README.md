@@ -182,8 +182,9 @@ Similar to before, we also adjusted the generator learning rate, while keeping t
 ![](Results/Generator_learningrate_0.00001/200000-images-g-lr0.00001.jpg) 
 
 **Hinge loss**
+|  <img src="Results/images_from_analysing/hingeloss_10k.jpg" style="zoom: 20%;" />    |   <img src="Results/images_from_analysing/hingeloss_100k.jpg" style="zoom: 20%;" />     |   <img src="Results/images_from_analysing/hingeloss_200k.jpg" style="zoom: 20%;" />   |
+| ---- | ---- | ---- |
 
-<img src="Results/images_from_analysing/hingeloss_10k.jpg" style="zoom: 20%;" /> <img src="Results/images_from_analysing/hingeloss_100k.jpg" style="zoom: 20%;" /> <img src="Results/images_from_analysing/hingeloss_200k.jpg" style="zoom: 20%;" />
 
 
 We also tried not just to change the learning rate, we also tried to modify the lossfunctions. As seen in the default setting is implemented with [Wasserstein Loss](https://papers.nips.cc/paper/2015/file/a9eb812238f753132652ae09963a05e9-Paper.pdf). We tried some other loss functions like the [hingeloss](https://en.wikipedia.org/wiki/Hinge_loss) if they would perform better like get better trained images after less iterations or better generated images with perfect set attributes. In the images above we see some like no more improvment after 100000 iterations and some attributes could applied well.
