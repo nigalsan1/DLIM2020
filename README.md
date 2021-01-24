@@ -210,40 +210,34 @@ To get a idea of what impact the different adjustement were made we set the firs
 | **Default**     | **Batch Size 8**     |
 | ---- | ---- |
 |   <img src="Results/Test_images/batchsize-16-test.jpg"/>   | <img src="Results/Test_images/batchsize-8-test.jpg"/>     |
+
 | **Default**     | **Batch Size 32**     |
 | ---- | ---- |
 |  <img src="Results/Test_images/batchsize-16-test.jpg"/>    |   <img src="Results/Test_images/batchsize-32-test.jpg"/>   |
+
 | **Default**     | **D-Learning Rate 0.00001** |
 | ---- | ---- |
 |   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |  <img src="Results/Test_images/d-lr-0.00001-test.jpg"/>    |
+
 | **Default**     | **D-Learning Rate 0.0005**     |
 | ---- | ---- |
 |   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |   <img src="Results/Test_images/d-lr-0.0005.jpg"/>   |
+
 | **Default**     | **G-Learning Rate 0.00001**     |
 | ---- | ---- |
 |   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |   <img src="Results/Test_images/g-lr-0.00001.jpg"/>   |
+
 | **Default**     | **G-Learning Rate 0.005**     |
 | ---- | ---- |
 |   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |  <img src="Results/Test_images/g-lr-0.005.jpg"/>    |
+
 | **Default**     | **Hinge Loss**     |
 | ---- | ---- |
 |   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |  <img src="Results/Test_images/hingeloss.jpg"/>    |
+
 | **Default**     | **New Instance Norm**     |
 | ---- | ---- |
 |   <img src="Results/Test_images/batchsize-16-test.jpg"/>   |  <img src="Results/Test_images/new_instance_norm.jpg"/>    |
-
-<!--- default for comparison between all of them -->
-![](Results/Test_images/batchsize-16-test.jpg)  ![]() ![]() ![]()
-
-<!--- four images next to each other for the different batchsize and a gif -->
-![](Results/Test_images/batchsize-16-test.jpg) ![]() ![]()
-
-<!--- four images next to each other for the different learning rate -->
-![](Results/Test_images/batchsize-16-test.jpg) ![]() ![]() ![]()
-
-<!--- four images next to each other for the different hingeloss instancenorm and default (wasserstein)-->
-![](Results/Test_images/batchsize-16-test.jpg) ![]() ![]() ![]()
-
 
 ## Live Image Translation
 
